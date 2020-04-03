@@ -11,6 +11,7 @@ import { MenuComponent } from './componentes/menu/menu.component';
 import { routes } from './app.routes';
 import { PessoaListarComponent } from './componentes/pessoa-listar/pessoa-listar.component';
 import { CPFPipe } from './componentes/pipes/cpf.pipe';
+import { PessoaDetalharComponent } from './componentes/pessoa-detalhar/pessoa-detalhar.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { CPFPipe } from './componentes/pipes/cpf.pipe';
     MenuComponent,
     PessoaListarComponent,
     CPFPipe,
+    PessoaDetalharComponent,
   ],
   imports: [
     BrowserModule,

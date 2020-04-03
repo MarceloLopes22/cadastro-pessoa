@@ -1,0 +1,47 @@
+<div class="col-md-10" style="margin-left: 0%">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3>Detalhe da Pessoa</h3>
+        </div>
+        <form class="form-horizontal">
+            <div [ngClass]="classCss" role="alert" *ngIf="menssage">
+                <strong>{{menssage.text}}</strong>
+            </div>
+            <div class="box-body">
+                <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item">
+                        <b>Nome: </b>
+                        <span>{{pessoa.nome}}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <b>CPF: </b>
+                        <span>{{pessoa.cpf | CPF}}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Sexo: </b>
+                        <span>{{pessoa.sexo}}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <b>E-mail: </b>
+                        <span>{{pessoa.email}}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Data de Nascimento': </b>
+                        <span>{{pessoa.data_nascimento}}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Naturalidade: </b>
+                        <span>{{pessoa.naturalidade}}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Nacionalidade: </b>
+                        <span>{{pessoa.nacionalidade}}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="box-footer">
+                <button class="btn btn-primary" (click)="voltar()">Voltar</button>
+            </div>
+        </form>
+    </div>
+</div>

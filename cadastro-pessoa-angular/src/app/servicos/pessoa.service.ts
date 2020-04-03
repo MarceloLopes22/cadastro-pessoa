@@ -22,10 +22,10 @@ export class PessoaService {
   }
 
   pesquisar(id:number) {
-    return this.http.get(`${PESSOA_API}/api/pessoa/${id}`);
+    return this.http.get(`${PESSOA_API}/api/pessoa/pesquisar/${id}`);
   }
   
   apagar(id:number) {
-    return this.http.delete(`${PESSOA_API}/api/pessoa/${id}`);
+    return this.http.delete(`${PESSOA_API}/api/pessoa/deletar/${id}`);
   }
 }

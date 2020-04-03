@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cadastro.pessoa.basica.Pessoa;
@@ -39,14 +38,15 @@ public class PessoaRestController {
 		return this.service.update(pessoa);
 	}
 	
-	@RequestMapping(value = "/pessoa/deletar/", method = RequestMethod.DELETE, produces = "application/json")
-	public ResponseEntity<Response<Pessoa>> deletar(@RequestParam("id") Long idPessoa) {
-		return this.service.delete(idPessoa);
+	@RequestMapping(value = "/pessoa/deletar/{id}", method = RequestMethod.DELETE, produces = "application/json")
+	public ResponseEntity<Response<Pessoa>> deletar(@PathVariable Long id) {
+		return this.service.delete(id);
 	}
 	
-	@RequestMapping(value = "/pessoa/pesquisar/", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<Response<Pessoa>> pesquisar(@RequestParam("id") Long idPessoa) {
-		return this.service.findById(idPessoa);
+	//@RequestMapping(value = "/pessoa/pesquisar/{id}", method = RequestMethod.GET, produces = "application/json")
+	@GetMapping(value = "/pessoa/pesquisar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Response<Pessoa>> pesquisar(@PathVariable Long id) {
+		return this.service.findById(id);
 	}
 	
 	//@RequestMapping(value = "/pessoa/listar/{page}/{count}", method = RequestMethod.GET, produces = "application/json")
