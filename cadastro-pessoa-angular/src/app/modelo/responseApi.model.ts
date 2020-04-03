@@ -5,6 +5,6 @@ export class ResponseApi {
 
     public data: any;
     public erros: Array<string>;
-    private httpStatus: any;
-	private mensagemSucesso:string;
+    public httpStatus: any;
+	public mensagemSucesso:string;
 }

@@ -50,7 +50,7 @@ export class PessoaDetalharComponent implements OnInit {
   }
 
   voltar(){
-    this.router.navigate(['/pessoa-lista'])
+    this.router.navigate(['/pessoa-lista']);
   }
 
 }

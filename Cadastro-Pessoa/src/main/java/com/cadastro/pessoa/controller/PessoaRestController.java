@@ -2,8 +2,6 @@ package com.cadastro.pessoa.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
@@ -29,12 +27,12 @@ public class PessoaRestController {
 	private PessoaService service;
 	
 	@RequestMapping(value = "/pessoa/salvar", method = RequestMethod.POST , produces = "application/json")
-	public ResponseEntity<Response<Pessoa>> salvar(@RequestBody @Valid Pessoa pessoa) {
+	public ResponseEntity<Response<Pessoa>> salvar(@RequestBody Pessoa pessoa) {
 		return this.service.create(pessoa);
 	}
 	
 	@RequestMapping(value = "/pessoa/atualizar", method = RequestMethod.PUT, produces = "application/json")
-	public ResponseEntity<Response<Pessoa>> atualizar(@RequestBody @Valid Pessoa pessoa) {
+	public ResponseEntity<Response<Pessoa>> atualizar(@RequestBody Pessoa pessoa) {
 		return this.service.update(pessoa);
 	}
 	
@@ -43,13 +41,11 @@ public class PessoaRestController {
 		return this.service.delete(id);
 	}
 	
-	//@RequestMapping(value = "/pessoa/pesquisar/{id}", method = RequestMethod.GET, produces = "application/json")
 	@GetMapping(value = "/pessoa/pesquisar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Response<Pessoa>> pesquisar(@PathVariable Long id) {
 		return this.service.findById(id);
 	}
 	
-	//@RequestMapping(value = "/pessoa/listar/{page}/{count}", method = RequestMethod.GET, produces = "application/json")
 	@GetMapping(value = "/pessoa/listar/{page}/{count}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Response<Page<List<Pessoa>>>> listar(@PathVariable int page,
 			@PathVariable int count) {

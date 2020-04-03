@@ -95,7 +95,6 @@ public class PessoaServiceImpl implements PessoaService {
 		return response;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public ResponseEntity<Response<Page<List<Pessoa>>>> findAll(int page, int count) {
 		Response<Page<List<Pessoa>>> response = new Response<Page<List<Pessoa>>>();
@@ -138,7 +137,6 @@ public class PessoaServiceImpl implements PessoaService {
 
 		if (!violations.isEmpty()) {
 			violations.forEach(e -> response.getErros().add(e.getMessage()));
-			// throw new ConstraintViolationException(violations);
 		}
 
 		if (Acao.INSERIR.equals(acao)) {

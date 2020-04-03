@@ -49,9 +49,9 @@ public class Pessoa implements Serializable {
 	private String email;
 	
 	@NotNull(message = "A data de nascimento deve ser preenchida.")
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(columnDefinition = "DATE")
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd/MM/yyyy")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	private LocalDate data_nascimento;
 	
 	@Size(max = 200, message = "Naturalidade não pode ter mais de 200 caracteres.")

@@ -1,3 +1,4 @@
+import { PessoaNovoComponent } from './componentes/pessoa-novo/pessoa-novo.component';
 import { PessoaDetalharComponent } from './componentes/pessoa-detalhar/pessoa-detalhar.component';
 import { PessoaListarComponent } from './componentes/pessoa-listar/pessoa-listar.component';
 import { Routes, RouterModule } from '@angular/router';
@@ -8,8 +9,8 @@ export const ROUTES: Routes = [
     
     {path: '', component: HomeComponent},
     {path: 'pessoa-lista', component: PessoaListarComponent},
-    /*{path: 'equipamento-novo', component: EquipamentoNovoComponent},
-    {path: 'equipamento-novo/:id', component: EquipamentoNovoComponent},*/
+    {path: 'pessoa-novo', component: PessoaNovoComponent},
+    {path: 'pessoa-novo/:id', component: PessoaNovoComponent},
     {path: 'detalhar-pessoa/:id', component: PessoaDetalharComponent},
 ]
 

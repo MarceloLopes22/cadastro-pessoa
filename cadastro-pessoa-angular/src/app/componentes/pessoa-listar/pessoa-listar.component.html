@@ -32,8 +32,8 @@
                             <td>{{p.naturalidade}}</td>
                             <td>{{p.nacionalidade}}</td>
                             <td>{{p.cpf | CPF}}</td>
-                            <td><button class="btn btn-primary" (click)="edit(p.id)">Editar</button></td>
-                            <td><button class="btn btn-danger" (click)="delete(p.id)">Excluir</button></td>
+                            <td><button class="btn btn-primary" (click)="editar(p.id)">Editar</button></td>
+                            <td><button class="btn btn-danger" (click)="apagar(p.id)">Excluir</button></td>
                             <td><button class="btn btn-success" (click)="detalhar(p.id)">Detalhar</button></td>
                         </tr>
                     </tbody>

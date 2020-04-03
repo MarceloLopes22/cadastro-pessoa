@@ -26,10 +26,10 @@ export class PessoaListarComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.findAll(this.page, this.count);
+    this.listar(this.page, this.count);
   }
 
-  findAll(page: number, count:number) {
+  listar(page: number, count:number) {
     this.pessoaService.listar(page, count).subscribe((responseApi: ResponseApi) => {
       this.listaPessoas = responseApi['data']['content'];
       this.pages = new Array(responseApi['data']['totalPages']);
@@ -41,11 +41,11 @@ export class PessoaListarComponent implements OnInit {
     });
   }
 
-  edit(id:number) {
+  editar(id:number) {
     this.router.navigate(['/pessoa-novo', id]);
   }
 
-  delete(id: number) {
+  apagar(id: number) {
     this.dialogService.confirm("Você quer deletar essa pessoa?")
     .then((podeApagar:boolean) =>{
       if(podeApagar) {
@@ -54,7 +54,7 @@ export class PessoaListarComponent implements OnInit {
             type: 'success',
             text: 'Registro deletado.'
           });
-          this.findAll(this.page, this.count);
+          this.listar(this.page, this.count);
         }, err => {
           this.showMessage({
             type: 'error',
@@ -73,7 +73,7 @@ export class PessoaListarComponent implements OnInit {
     event.preventDefault(); // evitar reload na tela
     if(this.page+1 < this.pages.length) {
       this.page = this.page + 1;
-      this.findAll(this.page, this.count);
+      this.listar(this.page, this.count);
     }
   }
 
@@ -81,14 +81,14 @@ export class PessoaListarComponent implements OnInit {
     event.preventDefault(); // evitar reload na tela
     if(this.page+1 < this.pages.length) {
       this.page = this.page - 1;
-      this.findAll(this.page, this.count);
+      this.listar(this.page, this.count);
     }
   }
 
   setPagina(i:number, event:any) {
     event.preventDefault(); // evitar reload na tela
       this.page = i;
-      this.findAll(this.page, this.count);
+      this.listar(this.page, this.count);
   }
 
   private showMessage(message: {type: string, text: string}) : void {

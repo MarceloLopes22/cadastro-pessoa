@@ -1,0 +1,126 @@
+<div class="col-md-12" style="margin-left: 0%">
+    <div class="box box-info">
+        <div class="box-header with-border">
+             <h3 class="box-title">Formulario da Pessoa</h3>
+        </div>
+        <form class="form-horizontal" #form="ngForm" (ngSubmit)="salvar()">
+            <div [ngClass]="classCss" role="alert" *ngIf="menssage != null && menssage.erros > 0">
+                <div *ngFor="let e of menssage.erros">
+                    <br/><strong>{{e}}</strong>
+                </div>
+            </div>
+            <div [ngClass]="classCss" role="alert" *ngIf="menssage">
+                <strong>{{menssage.text}}</strong>
+            </div>
+            <div class="box-body">
+                <div [ngClass]="getFormGroupClass(nome.invalid, nome.dirty)">
+                    <label for="inputNome" class="col-sm-2 control-label">Nome</label>
+                    <div class="col-sm-10">
+                        <input maxlength="200"
+                            type="text" 
+                            [(ngModel)]="pessoa.nome"
+                            class="form-control" 
+                            id="inputNome" 
+                            name="nome"
+                            #nome="ngModel"
+                            placeholder="Nome"
+                            onKeyDown="if(this.value.length==200) return false;" required>
+                        <span class="help-block" *ngIf="nome?.invalid && (nome?.dirty || nome?.touched)">
+                            Nome está invalido.
+                        </span>
+                    </div>
+                </div>
+                <div [ngClass]="getFormGroupClass(cpf.invalid, cpf.dirty)">
+                    <label for="inputCPF" class="col-sm-2 control-label">CPF</label>
+                    <div class="col-sm-10">
+                        <input 
+                            type="text" 
+                            [(ngModel)]="pessoa.cpf"
+                            class="form-control" 
+                            id="inputCPF" 
+                            name="cpf"
+                            #cpf="ngModel"
+                            placeholder="CPF" required mask="000.000.000-99"/>
+                        <span class="help-block" *ngIf="cpf?.invalid && (cpf?.dirty || cpf?.touched)">
+                            CPF está invalido.
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputSexo" class="col-sm-2 control-label">Sexo</label>
+                    <div class="col-sm-10">
+                        <select name="sexo" #sexo="ngModel" [(ngModel)]="pessoa.sexo" class="form-control">
+                            <option *ngFor="let s of sexos" 
+                                    id="inputSexo"
+                                    [value]="s"
+                                    [selected] = "pessoa.sexo == s">{{s}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-sm-2 control-label">E-mail</label>
+                    <div class="col-sm-10">
+                        <input maxlength="200"
+                            type="text" 
+                            [(ngModel)]="pessoa.email"
+                            class="form-control" 
+                            id="inputEmail" 
+                            name="email"
+                            #email="ngModel"
+                            placeholder="Email"
+                            onKeyDown="if(this.value.length==200) return false;">
+                    </div>
+                </div>
+
+                <div [ngClass]="getFormGroupClass(data_nascimento.invalid, data_nascimento.dirty)">
+                    <label for="inputDataNascimento" class="col-sm-2 control-label">Data de Nascimento:</label>
+                    <div class="date col-sm-10">
+                        <input 
+                            type="date" 
+                            [(ngModel)]="pessoa.data_nascimento"
+                            class="form-control pull-right" 
+                            id="data_nascimento" 
+                            name="data_nascimento"
+                            #data_nascimento="ngModel" required>
+                        <span class="help-block" *ngIf="data_nascimento.invalid && data_nascimento.dirty">
+                            Data de nascimento está invalida.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputNaturalidade" class="col-sm-2 control-label">Naturalidade</label>
+                    <div class="col-sm-10">
+                        <input maxlength="200"
+                            type="text" 
+                            [(ngModel)]="pessoa.naturalidade"
+                            class="form-control" 
+                            id="inputNaturalidade" 
+                            name="naturalidade"
+                            #naturalidade="ngModel"
+                            placeholder="Naturalidade"
+                            onKeyDown="if(this.value.length==200) return false;">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputNacionalidade" class="col-sm-2 control-label">Nacionalidade</label>
+                    <div class="col-sm-10">
+                        <input maxlength="200"
+                            type="text" 
+                            [(ngModel)]="pessoa.nacionalidade"
+                            class="form-control" 
+                            id="inputNacionalidade" 
+                            name="nacionalidade"
+                            #nacionalidade="ngModel"
+                            placeholder="Nacionalidade"
+                            onKeyDown="if(this.value.length==200) return false;">
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+                <button class="btn btn-primary" (click)="voltar()">Voltar</button>
+                <button type="submit" [disabled]="!form.valid" class="btn btn-info pull-right">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>
