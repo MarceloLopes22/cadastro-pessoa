@@ -20,8 +20,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.br.CPF;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.cadastro.pessoa.enuns.Sexo;
@@ -71,12 +69,10 @@ public class Pessoa implements Serializable {
 	private String cpf;
 	
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-	//@Column(columnDefinition = "TIMESTAMP")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data_cadastro;
 	
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-	//@Column(columnDefinition = "TIMESTAMP")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data_atualizacao;
 

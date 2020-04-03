@@ -1,0 +1,1 @@
+export const PESSOA_API: string = "http://localhost:8080";
