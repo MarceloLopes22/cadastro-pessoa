@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.7.0">
+<database name="cadastro-pessoa-stefanini">
+</database>
+
+<schema name="public" protected="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="pessoa">
+	<schema name="public"/>
+	<position x="350" y="135"/>
+	<column name="id">
+		<type name="bigint"/>
+	</column>
+	<column name="nome" not-null="true">
+		<type name="varchar" length="200"/>
+	</column>
+	<column name="sexo">
+		<type name="integer"/>
+	</column>
+	<column name="email">
+		<type name="varchar" length="200"/>
+	</column>
+	<column name="data_nascimento" not-null="true">
+		<type name="date"/>
+	</column>
+	<column name="naturalidade">
+		<type name="varchar" length="200"/>
+	</column>
+	<column name="nacionalidade">
+		<type name="varchar" length="200"/>
+	</column>
+	<column name="cpf">
+		<type name="varchar" length="11"/>
+	</column>
+	<column name="data_cadastro">
+		<type name="timestamp" with-timezone="true"/>
+	</column>
+	<column name="data_atualizacao">
+		<type name="timestamp" with-timezone="true"/>
+	</column>
+	<constraint name="pessoa_pk" type="pk-constr" factor="10" table="public.pessoa">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="pessoa_seq"
+	 start="1" increment="1"
+	 min-value="0" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+</sequence>
+
+</dbmodel>
