@@ -58,7 +58,7 @@ public class Pessoa implements Serializable {
 	@Column(nullable = true)
 	private String naturalidade;
 	
-	@Size(max = 200, message = "Naturalidade não pode ter mais de 200 caracteres.")
+	@Size(max = 200, message = "Nacionalidade não pode ter mais de 200 caracteres.")
 	@Column(nullable = true)
 	private String nacionalidade;
 	
