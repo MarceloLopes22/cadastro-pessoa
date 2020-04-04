@@ -75,6 +75,26 @@ public class Pessoa implements Serializable {
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data_atualizacao;
+	
+	public Pessoa() {
+	}
+
+	public Pessoa(
+			@NotBlank(message = "Nome é obrigatorio.") @Size(message = "Nome não pode ter mais de 200 letras.", max = 200) String nome,
+			Sexo sexo,
+			@Email(regexp = "^[A-Za-z0-9+_.-]+@(.+)$", message = "Informe um E-mail valido.") @Size(max = 200, message = "O E-mail não pode ter mais de 200 letras.") String email,
+			@NotNull(message = "A data de nascimento deve ser preenchida.") LocalDate data_nascimento,
+			@Size(max = 200, message = "Naturalidade não pode ter mais de 200 caracteres.") String naturalidade,
+			@Size(max = 200, message = "Nacionalidade não pode ter mais de 200 caracteres.") String nacionalidade,
+			@NotBlank(message = "O CPF deve ser preenchido") @CPF(message = "Informe um CPF valido.") @Size(max = 11, message = "O CPF não pode ter mais de 11 numeros.") String cpf) {
+		setNome(nome);
+		setSexo(sexo);
+		setEmail(email);
+		setData_nascimento(data_nascimento);
+		setNaturalidade(naturalidade);
+		setNacionalidade(nacionalidade);
+		setCpf(cpf);
+	}
 
 	public Long getId() {
 		return id;
@@ -155,89 +175,4 @@ public class Pessoa implements Serializable {
 	public void setData_atualizacao(Date data_atualizacao) {
 		this.data_atualizacao = data_atualizacao;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
-		result = prime * result + ((data_atualizacao == null) ? 0 : data_atualizacao.hashCode());
-		result = prime * result + ((data_cadastro == null) ? 0 : data_cadastro.hashCode());
-		result = prime * result + ((data_nascimento == null) ? 0 : data_nascimento.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((nacionalidade == null) ? 0 : nacionalidade.hashCode());
-		result = prime * result + ((naturalidade == null) ? 0 : naturalidade.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((sexo == null) ? 0 : sexo.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Pessoa other = (Pessoa) obj;
-		if (cpf == null) {
-			if (other.cpf != null)
-				return false;
-		} else if (!cpf.equals(other.cpf))
-			return false;
-		if (data_atualizacao == null) {
-			if (other.data_atualizacao != null)
-				return false;
-		} else if (!data_atualizacao.equals(other.data_atualizacao))
-			return false;
-		if (data_cadastro == null) {
-			if (other.data_cadastro != null)
-				return false;
-		} else if (!data_cadastro.equals(other.data_cadastro))
-			return false;
-		if (data_nascimento == null) {
-			if (other.data_nascimento != null)
-				return false;
-		} else if (!data_nascimento.equals(other.data_nascimento))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (nacionalidade == null) {
-			if (other.nacionalidade != null)
-				return false;
-		} else if (!nacionalidade.equals(other.nacionalidade))
-			return false;
-		if (naturalidade == null) {
-			if (other.naturalidade != null)
-				return false;
-		} else if (!naturalidade.equals(other.naturalidade))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (sexo != other.sexo)
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Pessoa [id=" + id + ", nome=" + nome + ", sexo=" + sexo + ", email=" + email + ", data_nascimento="
-				+ data_nascimento + ", naturalidade=" + naturalidade + ", nacionalidade=" + nacionalidade + ", cpf="
-				+ cpf + ", data_cadastro=" + data_cadastro + ", data_atualizacao=" + data_atualizacao + "]";
-	}
-	
-	
 }

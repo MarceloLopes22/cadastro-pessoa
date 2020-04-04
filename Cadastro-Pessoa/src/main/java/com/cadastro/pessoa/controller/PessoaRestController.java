@@ -37,13 +37,12 @@ public class PessoaRestController {
 	}
 	
 	@RequestMapping(value = "deletar/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Response<Pessoa>> deletar(@PathVariable Long id) {
+	public ResponseEntity<Response<Pessoa>> deletar(@PathVariable(name = "id") Long id) {
 		return this.service.delete(id);
 	}
 	
 	@GetMapping(value = "pesquisar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	//@RequestMapping(value = "pesquisar/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Response<Pessoa>> pesquisar(@PathVariable(name = "id") String id) {
+	public ResponseEntity<Response<Pessoa>> pesquisar(@PathVariable(name = "id") Long id) {
 		return this.service.findById(Long.valueOf(id));
 	}
 	

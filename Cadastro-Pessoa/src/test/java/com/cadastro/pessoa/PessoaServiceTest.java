@@ -6,49 +6,50 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cadastro.pessoa.basica.Pessoa;
 import com.cadastro.pessoa.constantes.Mensagens;
-import com.cadastro.pessoa.controller.PessoaRestController;
 import com.cadastro.pessoa.controller.response.Response;
 import com.cadastro.pessoa.dao.PessoaRepository;
 import com.cadastro.pessoa.enuns.Sexo;
 import com.cadastro.pessoa.service.PessoaService;
 import com.cadastro.pessoa.util.Util;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
 @SpringBootTest
-@AutoConfigureMockMvc
 @SuppressWarnings("unused")
 public class PessoaServiceTest {
-
-	@Autowired
-	private MockMvc mockMvc;
-
-	@Autowired
-	private PessoaRestController pessoaRestController;
-
+	
 	@Autowired
 	private PessoaService pessoaService;
 
 	@Autowired
 	private PessoaRepository pessoaRepository;
+	
+	@Before
+    public void setUp() {
+    	pessoaRepository.deleteAll();
+    	
+    	Pessoa p = new Pessoa("Dona Herminia", Sexo.FEMININO, "hermina@gmail.com", LocalDate.of(2020, 04, 04), "Teste",
+				"Teste", "76051106006");
+    	
+    	pessoaRepository.save(p);
+    }
 
 	@Test
 	public void pessoa_criado_com_sucesso_inclusao() throws Exception {
 		Pessoa pessoa = Pessoa.class.newInstance();
 		pessoa.setNome("Cauã Otávio Teixeira");
-		pessoa.setCpf("76051106006");
+		pessoa.setCpf("82658989083");
 		LocalDate data_nascimento = LocalDate.parse("1955-07-27", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		pessoa.setData_nascimento(data_nascimento);
 		pessoa.setEmail("cauaotavioteixeira__cauaotavioteixeira@trevorh.com.br");
@@ -61,7 +62,7 @@ public class PessoaServiceTest {
 		ResponseEntity<Response<Pessoa>> responseEntity = pessoaService.create(pessoa);
 		Response<Pessoa> response = responseEntity.getBody();
 
-		assertEquals(response.getMensagemSucesso(), Mensagens.PESSOA_CADASTRADA_COM_SUCESSO);
+		assertEquals(Mensagens.PESSOA_CADASTRADA_COM_SUCESSO, response.getMensagemSucesso());
 	}
 
 	@Test
