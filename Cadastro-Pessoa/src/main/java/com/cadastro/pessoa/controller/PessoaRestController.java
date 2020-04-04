@@ -26,17 +26,17 @@ public class PessoaRestController {
 	@Autowired
 	private PessoaService service;
 	
-	@RequestMapping(value = "salvar", method = RequestMethod.POST , produces = "application/json")
+	@RequestMapping(value = "salvar", method = RequestMethod.POST , produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Response<Pessoa>> salvar(@RequestBody Pessoa pessoa) {
 		return this.service.create(pessoa);
 	}
 	
-	@RequestMapping(value = "atualizar", method = RequestMethod.PUT, produces = "application/json")
+	@RequestMapping(value = "atualizar", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Response<Pessoa>> atualizar(@RequestBody Pessoa pessoa) {
 		return this.service.update(pessoa);
 	}
 	
-	@RequestMapping(value = "deletar/{id}", method = RequestMethod.DELETE, produces = "application/json")
+	@RequestMapping(value = "deletar/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Response<Pessoa>> deletar(@PathVariable Long id) {
 		return this.service.delete(id);
 	}
