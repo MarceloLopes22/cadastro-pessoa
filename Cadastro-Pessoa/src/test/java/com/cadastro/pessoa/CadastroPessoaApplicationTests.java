@@ -163,7 +163,13 @@ class CadastroPessoaApplicationTests {
 		ResponseEntity<Response<Pessoa>> responseEntity = pessoaService.create(pessoa);
 		Response<Pessoa> response = responseEntity.getBody();
 		
-		assertEquals(response.getErros().get(0), "O CPF não pode ter mais de 11 numeros.");
+		String mensagemErro = null;
+		for (String mensagem : response.getErros()) {
+			if (mensagem.equalsIgnoreCase("O CPF não pode ter mais de 11 numeros.")) {
+				assertEquals(mensagem, "O CPF não pode ter mais de 11 numeros.");
+				break;
+			}
+		}
 	}
 	
 	@Test
@@ -266,7 +272,13 @@ class CadastroPessoaApplicationTests {
 		ResponseEntity<Response<Pessoa>> responseEntity = pessoaService.create(pessoa);
 		Response<Pessoa> response = responseEntity.getBody();
 		
-		assertEquals(response.getErros().get(1), "O E-mail não pode ter mais de 200 letras.");
+		String mensagemErro = null;
+		for (String mensagem : response.getErros()) {
+			if (mensagem.equalsIgnoreCase("O E-mail não pode ter mais de 200 letras.")) {
+				assertEquals(mensagem, "O E-mail não pode ter mais de 200 letras.");
+				break;
+			}
+		}
 	}
 	
 	@Test
