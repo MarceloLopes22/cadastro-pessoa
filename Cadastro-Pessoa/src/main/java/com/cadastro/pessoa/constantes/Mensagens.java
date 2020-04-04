@@ -15,7 +15,4 @@ public class Mensagens {
 	public static final String PESSOA_ENCONTRADA = "Pessoa encontrada!";
 	
 	public static final String JA_EXISTE_UMA_PESSOA_CADASTRADA_COM_ESSE_CPF_POR_FAVOR_TENTE_OUTRO = "Já existe uma pessoa cadastrada com esse CPF, por favor tente outro.";
-	
-	public static final String NAO_E_POSSIVEL_ALTERAR_UMA_PESSOA_INEXISTENTE = "Não é possivel alterar uma pessoa inexistente.";
-	
 }

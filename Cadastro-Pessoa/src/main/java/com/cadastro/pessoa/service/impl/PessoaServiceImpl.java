@@ -133,9 +133,10 @@ public class PessoaServiceImpl implements PessoaService {
 	private Response<Pessoa> validarPessoa(Pessoa pessoa, Acao acao) {
 		final Response<Pessoa> response = new Response<Pessoa>();
 		final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-		final Set<ConstraintViolation<Pessoa>> violations = validator.validate(pessoa);
+		final Set<ConstraintViolation<Pessoa>> violations = validator.validate(pessoa);;
+		
 
-		if (!violations.isEmpty()) {
+		if (violations != null && !violations.isEmpty()) {
 			violations.forEach(e -> response.getErros().add(e.getMessage()));
 		}
 
@@ -145,15 +146,13 @@ public class PessoaServiceImpl implements PessoaService {
 				response.getErros().add(Mensagens.JA_EXISTE_UMA_PESSOA_CADASTRADA_COM_ESSE_CPF_POR_FAVOR_TENTE_OUTRO);
 			}
 		}
-		
-		if (Acao.ALTERAR.equals(acao)) {
-			Optional<Pessoa> optional = dao.findById(pessoa.getId());
-			if (optional != null && !optional.isPresent()) {
-				response.getErros().add(Mensagens.NAO_E_POSSIVEL_ALTERAR_UMA_PESSOA_INEXISTENTE);
-			}
-		}
 
 		return response;
+	}
+
+	@Override
+	public Pessoa findByCpf(String cpf) {
+		return dao.findPessoaByCpf(cpf);
 	}
 
 }

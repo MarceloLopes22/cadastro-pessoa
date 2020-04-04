@@ -20,4 +20,6 @@ public interface PessoaService {
 
 	public ResponseEntity<Response<Pessoa>> findById(Long idPessoa);
 
+	public Pessoa findByCpf(String cpf);
+
 }

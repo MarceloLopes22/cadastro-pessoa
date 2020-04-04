@@ -4,7 +4,7 @@ public class Autenticador {
 	private String mensagem;
 
 	public Autenticador(String message) {
-		this.mensagem = message;
+		setMessagem(message);
 	}
 
 	public String getMessagem() {

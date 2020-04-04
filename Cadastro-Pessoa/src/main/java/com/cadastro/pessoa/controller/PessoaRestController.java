@@ -41,10 +41,10 @@ public class PessoaRestController {
 		return this.service.delete(id);
 	}
 	
-	//@GetMapping(value = "pesquisar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	@RequestMapping(value = "pesquisar/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Response<Pessoa>> pesquisar(@PathVariable(name = "id") Long id) {
-		return this.service.findById(id);
+	@GetMapping(value = "pesquisar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	//@RequestMapping(value = "pesquisar/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Response<Pessoa>> pesquisar(@PathVariable(name = "id") String id) {
+		return this.service.findById(Long.valueOf(id));
 	}
 	
 	@GetMapping(value = "listar/{page}/{count}", produces = MediaType.APPLICATION_JSON_VALUE)
