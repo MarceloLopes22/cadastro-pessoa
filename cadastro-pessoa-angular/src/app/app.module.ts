@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http'; 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './componentes/footer/footer.component';
@@ -13,9 +13,9 @@ import { PessoaListarComponent } from './componentes/pessoa-listar/pessoa-listar
 import { CPFPipe } from './componentes/pipes/cpf.pipe';
 import { PessoaDetalharComponent } from './componentes/pessoa-detalhar/pessoa-detalhar.component';
 import { PessoaNovoComponent } from './componentes/pessoa-novo/pessoa-novo.component';
-//import { TextMaskModule } from 'angular2-text-mask';
-//import { BrMaskerModule } from 'brmasker-ionic-3';
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { LoginComponent } from './componentes/login/login.component'
+import { HttpInterceptorService } from './componentes/login/httpInterceptor.service';
  
 export const options: IConfig | (() => IConfig) = null;
 
@@ -30,6 +30,7 @@ export const options: IConfig | (() => IConfig) = null;
     CPFPipe,
     PessoaDetalharComponent,
     PessoaNovoComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,12 +39,13 @@ export const options: IConfig | (() => IConfig) = null;
     routes,
     HttpClientModule,
     NgxMaskModule.forRoot(options),
-    //BrMaskerModule,
     NgxMaskModule
-    //,
-    //TextMaskModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

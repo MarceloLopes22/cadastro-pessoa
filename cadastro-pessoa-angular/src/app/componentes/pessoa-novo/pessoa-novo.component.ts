@@ -73,7 +73,7 @@ export class PessoaNovoComponent implements OnInit {
     this.buildClasses(message.type);
     setTimeout(()=>{
       this.menssage = undefined;
-    }, 20000);
+    }, 2000);
   }
 
   private buildClasses(type: string) : void {

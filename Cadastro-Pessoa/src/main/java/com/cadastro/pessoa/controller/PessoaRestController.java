@@ -18,37 +18,38 @@ import com.cadastro.pessoa.basica.Pessoa;
 import com.cadastro.pessoa.controller.response.Response;
 import com.cadastro.pessoa.service.PessoaService;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api")
-@CrossOrigin(value = "*")
+@RequestMapping("/api/pessoa/")
 public class PessoaRestController {
 	
 	@Autowired
 	private PessoaService service;
 	
-	@RequestMapping(value = "/pessoa/salvar", method = RequestMethod.POST , produces = "application/json")
+	@RequestMapping(value = "salvar", method = RequestMethod.POST , produces = "application/json")
 	public ResponseEntity<Response<Pessoa>> salvar(@RequestBody Pessoa pessoa) {
 		return this.service.create(pessoa);
 	}
 	
-	@RequestMapping(value = "/pessoa/atualizar", method = RequestMethod.PUT, produces = "application/json")
+	@RequestMapping(value = "atualizar", method = RequestMethod.PUT, produces = "application/json")
 	public ResponseEntity<Response<Pessoa>> atualizar(@RequestBody Pessoa pessoa) {
 		return this.service.update(pessoa);
 	}
 	
-	@RequestMapping(value = "/pessoa/deletar/{id}", method = RequestMethod.DELETE, produces = "application/json")
+	@RequestMapping(value = "deletar/{id}", method = RequestMethod.DELETE, produces = "application/json")
 	public ResponseEntity<Response<Pessoa>> deletar(@PathVariable Long id) {
 		return this.service.delete(id);
 	}
 	
-	@GetMapping(value = "/pessoa/pesquisar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Response<Pessoa>> pesquisar(@PathVariable Long id) {
+	//@GetMapping(value = "pesquisar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "pesquisar/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Response<Pessoa>> pesquisar(@PathVariable(name = "id") Long id) {
 		return this.service.findById(id);
 	}
 	
-	@GetMapping(value = "/pessoa/listar/{page}/{count}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Response<Page<List<Pessoa>>>> listar(@PathVariable int page,
-			@PathVariable int count) {
+	@GetMapping(value = "listar/{page}/{count}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Response<Page<List<Pessoa>>>> listar(@PathVariable(name = "page") int page,
+			@PathVariable(name = "count") int count) {
 		return this.service.findAll(page, count);
 	}
 

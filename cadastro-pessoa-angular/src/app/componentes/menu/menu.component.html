@@ -1,7 +1,7 @@
 <aside class="main-sidebar">
     <section class="sidebar">
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="treeview">
+            <li class="treeview" *ngIf="isUsuarioLogado" >
                 <a href="#">
                     <i class="fa fa-edit"></i> <span>Cadastro de Pessoa</span>
                     <span class="pull-right-container">
@@ -11,6 +11,7 @@
                 <ul class="treeview-menu">
                     <li><a [routerLink]="['/pessoa-lista']"><i class="fa fa-circle-o"></i>Lista</a></li>
                     <li><a [routerLink]="['/pessoa-novo']"><i class="fa fa-circle-o"></i>Novo</a></li>
+                    <li><a [routerLink]="['/login']" class="nav-link"  (click)=logout()>Logout</a></li>
                 </ul>
             </li>
         </ul>

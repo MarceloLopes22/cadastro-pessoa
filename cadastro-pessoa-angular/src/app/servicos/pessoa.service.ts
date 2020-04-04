@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { PESSOA_API } from './pessoa.api';
 import { Pessoa } from '../modelo/pessoa.model';
 
