@@ -18,7 +18,7 @@ import com.cadastro.pessoa.basica.Pessoa;
 import com.cadastro.pessoa.controller.response.Response;
 import com.cadastro.pessoa.service.PessoaService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:8080"})
 @RestController
 @RequestMapping("/api/pessoa/")
 public class PessoaRestController {

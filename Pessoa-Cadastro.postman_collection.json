@@ -1,196 +1,247 @@
 {
-	"id": "38ce2724-8a01-3709-faaf-e498512316e5",
-	"name": "Pessoa-Cadastro",
-	"description": "",
-	"order": [
-		"5d976048-b575-e5b7-0f1b-b8cd343b3144",
-		"c5964c18-19e7-c13a-dba4-98447556d51d",
-		"eb70ce92-95c1-d9a8-ca10-a976f89a87eb",
-		"8493241c-f143-d8be-4e7c-a0d5248db12d",
-		"079276fc-9395-a083-0d89-ae0496e64315"
-	],
-	"folders": [],
-	"folders_order": [],
-	"timestamp": 1585869959190,
-	"owner": "4874864",
-	"public": false,
-	"requests": [
+	"info": {
+		"_postman_id": "bf641b99-f89f-422f-99d8-022605365d3f",
+		"name": "Cadastro Pessoa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
 		{
-			"id": "079276fc-9395-a083-0d89-ae0496e64315",
-			"headers": "",
-			"headerData": [],
-			"url": "localhost:8080/api/pessoa/deletar/?id=1",
-			"queryParams": [
-				{
-					"key": "id",
-					"value": "1",
-					"equals": true,
-					"description": "",
-					"enabled": true
-				}
-			],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "DELETE",
-			"collectionId": "38ce2724-8a01-3709-faaf-e498512316e5",
-			"data": null,
-			"dataMode": "params",
-			"name": "localhost:8080/api/pessoa/deletar/?id=1",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1585874013585,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {}
-		},
-		{
-			"id": "5d976048-b575-e5b7-0f1b-b8cd343b3144",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "localhost:8080/api/pessoa/salvar",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "POST",
-			"collectionId": "38ce2724-8a01-3709-faaf-e498512316e5",
-			"data": [],
-			"dataMode": "raw",
-			"name": "localhost:8080/api/pessoa/salvar",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1585869961260,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"rawModeData": "{\n\t\"nome\":\"Cauã Otávio Teixeira\",\n\t\"cpf\":\"85639888598\",\n\t\"data_nascimento\":\"27/07/1955\",\n\t\"email\":\"cauaotavioteixeira__cauaotavioteixeira@trevorh.com.br\",\n\t\"sexo\": \"MASCULINO\",\n\t\"nacionalidade\":\"Brasileiro\",\n\t\"naturalidade\":\"Curitibano\"\n}"
-		},
-		{
-			"id": "8493241c-f143-d8be-4e7c-a0d5248db12d",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "localhost:8080/api/pessoa/pesquisar/?id=1",
-			"queryParams": [
-				{
-					"key": "id",
-					"value": "1",
-					"equals": true,
-					"description": "",
-					"enabled": true
-				}
-			],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "GET",
-			"collectionId": "38ce2724-8a01-3709-faaf-e498512316e5",
-			"data": [],
-			"dataMode": "raw",
-			"name": "localhost:8080/api/pessoa/pesquisar/?id=1",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1585873876581,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"rawModeData": "{\"id\":1}"
-		},
-		{
-			"id": "c5964c18-19e7-c13a-dba4-98447556d51d",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "localhost:8080/api/pessoa/listar/?page=0&count=10",
-			"queryParams": [
-				{
-					"key": "page",
-					"value": "0",
-					"equals": true,
-					"description": "",
-					"enabled": true
+			"name": "Autenticar",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
 				},
-				{
-					"key": "count",
-					"value": "10",
-					"equals": true,
-					"description": "",
-					"enabled": true
-				}
-			],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "GET",
-			"collectionId": "38ce2724-8a01-3709-faaf-e498512316e5",
-			"data": [],
-			"dataMode": "raw",
-			"name": "localhost:8080/api/pessoa/listar/?page=0&count=10",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1585871125764,
-			"version": 2,
-			"responses": [],
-			"tests": "",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"rawModeData": ""
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/basicauth",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"basicauth"
+					]
+				},
+				"description": "Autenticação"
+			},
+			"response": []
 		},
 		{
-			"id": "eb70ce92-95c1-d9a8-ca10-a976f89a87eb",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "localhost:8080/api/pessoa/atualizar",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "PUT",
-			"data": [],
-			"dataMode": "raw",
-			"version": 2,
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1585872982099,
-			"name": "localhost:8080/api/pessoa/atualizar",
-			"description": "",
-			"collectionId": "38ce2724-8a01-3709-faaf-e498512316e5",
-			"responses": [],
-			"rawModeData": "{\n\t\t\"id\": 2,\n        \"nome\": \"Marcelo de Moraes Lopes Filhooo\",\n        \"sexo\": \"MASCULINO\",\n        \"email\": \"marcelomlopes2@gmail.com\",\n        \"data_nascimento\": \"19/03/1992\",\n        \"naturalidade\": \"Paulista/PE\",\n        \"nacionalidade\": \"Brasileiro\",\n        \"cpf\": \"09680312429\"\n}"
+			"name": "Salvar Pessoa",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\":\"Cauã Otávio Teixeira\",\n\t\"cpf\":\"85639888598\",\n\t\"data_nascimento\":\"1955-07-27\",\n\t\"email\":\"cauaotavioteixeira__cauaotavioteixeira@trevorh.com.br\",\n\t\"sexo\": \"MASCULINO\",\n\t\"nacionalidade\":\"Brasileiro\",\n\t\"naturalidade\":\"Curitibano\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/pessoa/salvar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"pessoa",
+						"salvar"
+					]
+				},
+				"description": "Salvar"
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Pessoa",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"id\": 536,\r\n        \"nome\": \"Marcelo Lopes Edição\",\r\n        \"sexo\": \"MASCULINO\",\r\n        \"email\": \"cauaotavioteixeira__cauaotavioteixeira@trevorh.com.br\",\r\n        \"data_nascimento\": \"1955-07-27\",\r\n        \"naturalidade\": \"Curitibano\",\r\n        \"nacionalidade\": \"Brasileiro\",\r\n        \"cpf\": \"85639888598\",\r\n        \"data_cadastro\": \"2020-04-05T00:41:41.086+0000\",\r\n        \"data_atualizacao\": null\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/pessoa/atualizar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"pessoa",
+						"atualizar"
+					]
+				},
+				"description": "Atualizar Pessoa"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar Pessoa",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/pessoa/deletar/536",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"pessoa",
+						"deletar",
+						"536"
+					]
+				},
+				"description": "Deletar Pessoa"
+			},
+			"response": []
+		},
+		{
+			"name": "Pesquisar Pessoa",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/pessoa/pesquisar/534",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"pessoa",
+						"pesquisar",
+						"534"
+					]
+				},
+				"description": "Pesquisar Pessoa"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Pessoas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/pessoa/listar/0/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"pessoa",
+						"listar",
+						"0",
+						"10"
+					]
+				},
+				"description": "Listar Pessoas"
+			},
+			"response": []
 		}
-	]
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "admin",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"protocolProfileBehavior": {}
 }
