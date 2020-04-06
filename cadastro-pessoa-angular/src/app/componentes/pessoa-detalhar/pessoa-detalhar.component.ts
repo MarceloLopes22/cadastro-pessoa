@@ -1,3 +1,4 @@
+import { Uf } from './../../modelo/enums/uf';
 import { Component, OnInit } from '@angular/core';
 import { Pessoa } from 'src/app/modelo/pessoa.model';
 import { PessoaService } from 'src/app/servicos/pessoa.service';
@@ -10,7 +11,7 @@ import { ResponseApi } from 'src/app/modelo/responseApi.model';
 })
 export class PessoaDetalharComponent implements OnInit {
 
-  pessoa = new Pessoa(null,"",null,"",null,"","","",null,null);
+  pessoa = new Pessoa(null,"",null,"",null,"","","","","", "","",null,null,null,null);
   menssage: {};
   classCss: {};
 

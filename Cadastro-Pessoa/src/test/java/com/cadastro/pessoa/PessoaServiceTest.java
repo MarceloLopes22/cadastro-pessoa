@@ -18,7 +18,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cadastro.pessoa.basica.Endereco;
 import com.cadastro.pessoa.basica.Pessoa;
 import com.cadastro.pessoa.constantes.Mensagens;
 import com.cadastro.pessoa.controller.response.Response;
@@ -44,34 +43,23 @@ public class PessoaServiceTest {
     public void setUp() {
     	pessoaRepository.deleteAll();
     	
-    	Endereco endereco = getEndereco();
-    	endereco.setData_cadastro(new Date());
-    	
     	Pessoa p = new Pessoa("Dona Herminia", Sexo.FEMININO, "hermina@gmail.com", LocalDate.of(2020, 04, 04), "Teste",
-				"Teste", "76051106006", endereco);
+				"Teste", "76051106006", "Avenida Juiz Marco Túlio Isaac", "Laranjeiras", "Betim", "32676358",
+				Uf.MINAS_GERAIS, 170);
     	p.setData_cadastro(new Date());
     	
     	pessoaRepository.save(p);
     }
 
-	private Endereco getEndereco() {
-		Endereco endereco = new Endereco("Avenida Juiz Marco Túlio Isaac", "Laranjeiras", "Betim", "32676358", Uf.MINAS_GERAIS, 170);
-		return endereco;
-	}
-
 	@Test
 	public void pessoa_criado_com_sucesso_inclusao() throws Exception {
-		Pessoa pessoa = Pessoa.class.newInstance();
-		pessoa.setNome("Cauã Otávio Teixeira");
-		pessoa.setCpf("82658989083");
-		LocalDate data_nascimento = LocalDate.parse("1955-07-27", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		pessoa.setData_nascimento(data_nascimento);
-		pessoa.setEmail("cauaotavioteixeira__cauaotavioteixeira@trevorh.com.br");
-		pessoa.setSexo(Sexo.MASCULINO);
-		pessoa.setNacionalidade("Brasileiro");
-		pessoa.setNaturalidade("Curitibano");
-		pessoa.setEndereco(getEndereco());
-
+		
+		Pessoa pessoa = new Pessoa("Cauã Otávio Teixeira", Sexo.MASCULINO, "cauaotavioteixeira@trevorh.com.br", 
+				LocalDate.of(1955, 07, 27), "Brasileiro",
+				"Curitibano", "82658989083", "Avenida Juiz Marco Túlio Isaac", "Laranjeiras", "Betim", "32676358",
+				Uf.MINAS_GERAIS, 170);
+		
+		
 		String pessoaJson = Util.asJsonString(pessoa);
 
 		ResponseEntity<Response<Pessoa>> responseEntity = pessoaService.create(pessoa);
@@ -91,7 +79,12 @@ public class PessoaServiceTest {
 		pessoa.setSexo(Sexo.MASCULINO);
 		pessoa.setNacionalidade("Brasileiro");
 		pessoa.setNaturalidade("Curitibano");
-		pessoa.setEndereco(getEndereco());
+		pessoa.setLogradouro("Avenida Juiz Marco Túlio Isaac");
+		pessoa.setBairro("Laranjeiras");
+		pessoa.setCidade("Betim");
+		pessoa.setCep("32676358");
+		pessoa.setUf(Uf.MINAS_GERAIS);
+		pessoa.setNumero(170);
 
 		String pessoaJson = Util.asJsonString(pessoa);
 
@@ -112,7 +105,12 @@ public class PessoaServiceTest {
 		pessoa.setSexo(Sexo.MASCULINO);
 		pessoa.setNacionalidade("Brasileiro");
 		pessoa.setNaturalidade("Curitibano");
-		pessoa.setEndereco(getEndereco());
+		pessoa.setLogradouro("Avenida Juiz Marco Túlio Isaac");
+		pessoa.setBairro("Laranjeiras");
+		pessoa.setCidade("Betim");
+		pessoa.setCep("32676358");
+		pessoa.setUf(Uf.MINAS_GERAIS);
+		pessoa.setNumero(170);
 
 		String pessoaJson = Util.asJsonString(pessoa);
 
@@ -133,7 +131,12 @@ public class PessoaServiceTest {
 		pessoa.setSexo(Sexo.MASCULINO);
 		pessoa.setNacionalidade("Brasileiro");
 		pessoa.setNaturalidade("Curitibano");
-		pessoa.setEndereco(getEndereco());
+		pessoa.setLogradouro("Avenida Juiz Marco Túlio Isaac");
+		pessoa.setBairro("Laranjeiras");
+		pessoa.setCidade("Betim");
+		pessoa.setCep("32676358");
+		pessoa.setUf(Uf.MINAS_GERAIS);
+		pessoa.setNumero(170);
 
 		String pessoaJson = Util.asJsonString(pessoa);
 
@@ -160,7 +163,12 @@ public class PessoaServiceTest {
 		pessoa.setSexo(Sexo.MASCULINO);
 		pessoa.setNacionalidade("Brasileiro");
 		pessoa.setNaturalidade("Curitibano");
-		pessoa.setEndereco(getEndereco());
+		pessoa.setLogradouro("Avenida Juiz Marco Túlio Isaac");
+		pessoa.setBairro("Laranjeiras");
+		pessoa.setCidade("Betim");
+		pessoa.setCep("32676358");
+		pessoa.setUf(Uf.MINAS_GERAIS);
+		pessoa.setNumero(170);
 
 		String pessoaJson = Util.asJsonString(pessoa);
 
@@ -181,7 +189,12 @@ public class PessoaServiceTest {
 		pessoa.setSexo(Sexo.MASCULINO);
 		pessoa.setNacionalidade("Brasileiro");
 		pessoa.setNaturalidade("Curitibano");
-		pessoa.setEndereco(getEndereco());
+		pessoa.setLogradouro("Avenida Juiz Marco Túlio Isaac");
+		pessoa.setBairro("Laranjeiras");
+		pessoa.setCidade("Betim");
+		pessoa.setCep("32676358");
+		pessoa.setUf(Uf.MINAS_GERAIS);
+		pessoa.setNumero(170);
 
 		String pessoaJson = Util.asJsonString(pessoa);
 
@@ -204,7 +217,12 @@ public class PessoaServiceTest {
 		pessoa.setSexo(Sexo.MASCULINO);
 		pessoa.setNacionalidade("Brasileiro");
 		pessoa.setNaturalidade("Curitibano");
-		pessoa.setEndereco(getEndereco());
+		pessoa.setLogradouro("Avenida Juiz Marco Túlio Isaac");
+		pessoa.setBairro("Laranjeiras");
+		pessoa.setCidade("Betim");
+		pessoa.setCep("32676358");
+		pessoa.setUf(Uf.MINAS_GERAIS);
+		pessoa.setNumero(170);
 
 		String pessoaJson = Util.asJsonString(pessoa);
 
@@ -225,7 +243,12 @@ public class PessoaServiceTest {
 		pessoa.setSexo(Sexo.MASCULINO);
 		pessoa.setNacionalidade("Brasileiro");
 		pessoa.setNaturalidade("Curitibano");
-		pessoa.setEndereco(getEndereco());
+		pessoa.setLogradouro("Avenida Juiz Marco Túlio Isaac");
+		pessoa.setBairro("Laranjeiras");
+		pessoa.setCidade("Betim");
+		pessoa.setCep("32676358");
+		pessoa.setUf(Uf.MINAS_GERAIS);
+		pessoa.setNumero(170);
 
 		String pessoaJson = Util.asJsonString(pessoa);
 
@@ -247,7 +270,12 @@ public class PessoaServiceTest {
 				+ "eixeiracauaotavioteixeiracauaotavioteixeiracauaotavioteixeira@gmail.com.br");
 		pessoa.setNacionalidade("Brasileiro");
 		pessoa.setNaturalidade("Curitibano");
-		pessoa.setEndereco(getEndereco());
+		pessoa.setLogradouro("Avenida Juiz Marco Túlio Isaac");
+		pessoa.setBairro("Laranjeiras");
+		pessoa.setCidade("Betim");
+		pessoa.setCep("32676358");
+		pessoa.setUf(Uf.MINAS_GERAIS);
+		pessoa.setNumero(170);
 
 		String pessoaJson = Util.asJsonString(pessoa);
 
@@ -272,7 +300,12 @@ public class PessoaServiceTest {
 		pessoa.setEmail("cauaotavioteixeira__cauaotavioteixeira@trevorh.com.br");
 		pessoa.setNacionalidade("Brasileiro");
 		pessoa.setNaturalidade("Curitibano");
-		pessoa.setEndereco(getEndereco());
+		pessoa.setLogradouro("Avenida Juiz Marco Túlio Isaac");
+		pessoa.setBairro("Laranjeiras");
+		pessoa.setCidade("Betim");
+		pessoa.setCep("32676358");
+		pessoa.setUf(Uf.MINAS_GERAIS);
+		pessoa.setNumero(170);
 
 		String pessoaJson = Util.asJsonString(pessoa);
 
@@ -295,7 +328,12 @@ public class PessoaServiceTest {
 						+ "				+ \"utopias constituíram sempre o fundamento simbólico e mítico sem o\\n\" + \n"
 						+ "				\" qual nenhuma forma de organização social se suuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
 		pessoa.setNaturalidade("Curitibano");
-		pessoa.setEndereco(getEndereco());
+		pessoa.setLogradouro("Avenida Juiz Marco Túlio Isaac");
+		pessoa.setBairro("Laranjeiras");
+		pessoa.setCidade("Betim");
+		pessoa.setCep("32676358");
+		pessoa.setUf(Uf.MINAS_GERAIS);
+		pessoa.setNumero(170);
 
 		String pessoaJson = Util.asJsonString(pessoa);
 
@@ -318,7 +356,12 @@ public class PessoaServiceTest {
 				"Nada do que é social e humano é mais real que as utopias. Na sua vertente eutópica, as \\\"\\n\" + \n"
 						+ "				\"				+ \\\"utopias constituíram sempre o fundamento simbólico e mítico sem o\\\\n\\\" + \\n\" + \n"
 						+ "				\"				\\\" qual nenhuma forma de organização social se suuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
-		pessoa.setEndereco(getEndereco());
+		pessoa.setLogradouro("Avenida Juiz Marco Túlio Isaac");
+		pessoa.setBairro("Laranjeiras");
+		pessoa.setCidade("Betim");
+		pessoa.setCep("32676358");
+		pessoa.setUf(Uf.MINAS_GERAIS);
+		pessoa.setNumero(170);
 		
 		ResponseEntity<Response<Pessoa>> responseEntity = pessoaService.create(pessoa);
 		Response<Pessoa> response = responseEntity.getBody();
@@ -327,7 +370,7 @@ public class PessoaServiceTest {
 	}
 	
 	@Test
-	public void pessoa_sem_endereco_preenchido_inclusao() throws Exception {
+	public void pessoa_sem_logradouro_preenchido_inclusao() throws Exception {
 		Pessoa pessoa = Pessoa.class.newInstance();
 		pessoa.setNome("xpto");
 		pessoa.setCpf("32056383012");
@@ -336,16 +379,21 @@ public class PessoaServiceTest {
 		pessoa.setEmail("cauaotavioteixeira__cauaotavioteixeira@trevorh.com.br");
 		pessoa.setNacionalidade("qualquer uma");
 		pessoa.setNaturalidade("qualquer uma");
-		pessoa.setEndereco(null);
+		pessoa.setLogradouro(null);
+		pessoa.setBairro("Laranjeiras");
+		pessoa.setCidade("Betim");
+		pessoa.setCep("32676358");
+		pessoa.setUf(Uf.MINAS_GERAIS);
+		pessoa.setNumero(170);
 		
 		ResponseEntity<Response<Pessoa>> responseEntity = pessoaService.create(pessoa);
 		Response<Pessoa> response = responseEntity.getBody();
 
-		assertEquals(Mensagens.O_ENDERECO_E_OBRIGATORTIO, response.getErros().get(0));
+		assertEquals(Mensagens.O_LOGRADOURO_E_OBRIGATORIO, response.getErros().get(0));
 	}
 	
 	@Test
-	public void pessoa_com_cep_invalido_inclusao() throws Exception {
+	public void pessoa_com_logradouro_com_mais_de_100_caracteres_inclusao() throws Exception {
 		Pessoa pessoa = Pessoa.class.newInstance();
 		pessoa.setNome("xpto");
 		pessoa.setCpf("32056383012");
@@ -354,22 +402,224 @@ public class PessoaServiceTest {
 		pessoa.setEmail("cauaotavioteixeira__cauaotavioteixeira@trevorh.com.br");
 		pessoa.setNacionalidade("qualquer uma");
 		pessoa.setNaturalidade("qualquer uma");
-		Endereco endereco = getEndereco();
-		endereco.setCep("158789358452489");
-		pessoa.setEndereco(endereco);
+		pessoa.setLogradouro(
+				"Nada do que é social e humano é mais real que as utopias. Na sua vertente eutópica, as \\\"\\n\" + \n"
+						+ "				\"				+ \\\"utopias constituíram sempre o fundamento simbólico e mítico sem o\\\\n\\\" + \\n\" + \n"
+						+ "				\"				\\\" qual nenhuma forma de organ");
+		pessoa.setBairro("Laranjeiras");
+		pessoa.setCidade("Betim");
+		pessoa.setCep("32676358");
+		pessoa.setUf(Uf.MINAS_GERAIS);
+		pessoa.setNumero(170);
 		
 		ResponseEntity<Response<Pessoa>> responseEntity = pessoaService.create(pessoa);
 		Response<Pessoa> response = responseEntity.getBody();
 
-		assertEquals(Mensagens.CEP_INVALIDO, response.getErros().get(0));
+		assertEquals(Mensagens.LOGRADOURO_NAO_PODE_TER_MAIS_DE_100_CARACTERES, response.getErros().get(0));
 	}
+	
+	
+	@Test
+	public void pessoa_sem_bairro_preenchido_inclusao() throws Exception {
+		Pessoa pessoa = Pessoa.class.newInstance();
+		pessoa.setNome("xpto");
+		pessoa.setCpf("32056383012");
+		LocalDate data_nascimento = LocalDate.parse("1955-07-27", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		pessoa.setData_nascimento(data_nascimento);
+		pessoa.setEmail("cauaotavioteixeira__cauaotavioteixeira@trevorh.com.br");
+		pessoa.setNacionalidade("qualquer uma");
+		pessoa.setNaturalidade("qualquer uma");
+		pessoa.setLogradouro("Avenida Juiz Marco Túlio Isaac");
+		pessoa.setBairro(null);
+		pessoa.setCidade("Betim");
+		pessoa.setCep("32676358");
+		pessoa.setUf(Uf.MINAS_GERAIS);
+		pessoa.setNumero(170);
+		
+		ResponseEntity<Response<Pessoa>> responseEntity = pessoaService.create(pessoa);
+		Response<Pessoa> response = responseEntity.getBody();
+		
+		assertEquals(Mensagens.O_BAIRRO_E_OBRIGATORIO, response.getErros().get(0));
+	}
+	
+	@Test
+	public void pessoa_com_bairro_com_mais_de_100_caracteres_inclusao() throws Exception {
+		Pessoa pessoa = Pessoa.class.newInstance();
+		pessoa.setNome("xpto");
+		pessoa.setCpf("32056383012");
+		LocalDate data_nascimento = LocalDate.parse("1955-07-27", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		pessoa.setData_nascimento(data_nascimento);
+		pessoa.setEmail("cauaotavioteixeira__cauaotavioteixeira@trevorh.com.br");
+		pessoa.setNacionalidade("qualquer uma");
+		pessoa.setNaturalidade("qualquer uma");
+		pessoa.setLogradouro("Avenida Juiz Marco Túlio Isaac");
+		pessoa.setBairro("Nada do que é social e humano é mais real que as utopias. Na sua vertente eutópica, as \\\"\\n\" + \n"
+				+ "				\"				+ \\\"utopias constituíram sempre o fundamento simbólico e mítico sem o\\\\n\\\" + \\n\" + \n"
+				+ "				\"				\\\" qual nenhuma forma de organ");
+		pessoa.setCidade("Betim");
+		pessoa.setCep("32676358");
+		pessoa.setUf(Uf.MINAS_GERAIS);
+		pessoa.setNumero(170);
+		
+		ResponseEntity<Response<Pessoa>> responseEntity = pessoaService.create(pessoa);
+		Response<Pessoa> response = responseEntity.getBody();
+		
+		assertEquals(Mensagens.BAIRRO_NAO_PODE_TER_MAIS_DE_100_CARACTERES, response.getErros().get(0));
+	}
+	
+	@Test
+	public void pessoa_sem_cidade_preenchido_inclusao() throws Exception {
+		Pessoa pessoa = Pessoa.class.newInstance();
+		pessoa.setNome("xpto");
+		pessoa.setCpf("32056383012");
+		LocalDate data_nascimento = LocalDate.parse("1955-07-27", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		pessoa.setData_nascimento(data_nascimento);
+		pessoa.setEmail("cauaotavioteixeira__cauaotavioteixeira@trevorh.com.br");
+		pessoa.setNacionalidade("qualquer uma");
+		pessoa.setNaturalidade("qualquer uma");
+		pessoa.setLogradouro("Avenida Juiz Marco Túlio Isaac");
+		pessoa.setBairro("Laranjeiras");
+		pessoa.setCidade(null);
+		pessoa.setCep("32676358");
+		pessoa.setUf(Uf.MINAS_GERAIS);
+		pessoa.setNumero(170);
+		
+		ResponseEntity<Response<Pessoa>> responseEntity = pessoaService.create(pessoa);
+		Response<Pessoa> response = responseEntity.getBody();
+		
+		assertEquals(Mensagens.CIDADE_E_OBRIGATORIA, response.getErros().get(0));
+	}
+	
+	@Test
+	public void pessoa_com_cidade_com_mais_de_100_caracteres_inclusao() throws Exception {
+		Pessoa pessoa = Pessoa.class.newInstance();
+		pessoa.setNome("xpto");
+		pessoa.setCpf("32056383012");
+		LocalDate data_nascimento = LocalDate.parse("1955-07-27", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		pessoa.setData_nascimento(data_nascimento);
+		pessoa.setEmail("cauaotavioteixeira__cauaotavioteixeira@trevorh.com.br");
+		pessoa.setNacionalidade("qualquer uma");
+		pessoa.setNaturalidade("qualquer uma");
+		pessoa.setLogradouro("Avenida Juiz Marco Túlio Isaac");
+		pessoa.setBairro("Laranjeiras");
+		pessoa.setCidade("Nada do que é social e humano é mais real que as utopias. Na sua vertente eutópica, as \\\"\\n\" + \n"
+				+ "				\"				+ \\\"utopias constituíram sempre o fundamento simbólico e mítico sem o\\\\n\\\" + \\n\" + \n"
+				+ "				\"				\\\" qual nenhuma forma de organ");
+		pessoa.setCep("32676358");
+		pessoa.setUf(Uf.MINAS_GERAIS);
+		pessoa.setNumero(170);
+		
+		ResponseEntity<Response<Pessoa>> responseEntity = pessoaService.create(pessoa);
+		Response<Pessoa> response = responseEntity.getBody();
+		
+		assertEquals(Mensagens.CIDADE_NAO_PODE_TER_MAIS_DE_100_CARACTERES, response.getErros().get(0));
+	}
+	
 
+	@Test
+	public void pessoa_sem_cep_preenchido_inclusao() throws Exception {
+		Pessoa pessoa = Pessoa.class.newInstance();
+		pessoa.setNome("xpto");
+		pessoa.setCpf("32056383012");
+		LocalDate data_nascimento = LocalDate.parse("1955-07-27", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		pessoa.setData_nascimento(data_nascimento);
+		pessoa.setEmail("cauaotavioteixeira__cauaotavioteixeira@trevorh.com.br");
+		pessoa.setNacionalidade("qualquer uma");
+		pessoa.setNaturalidade("qualquer uma");
+		pessoa.setLogradouro("Avenida Juiz Marco Túlio Isaac");
+		pessoa.setBairro("Laranjeiras");
+		pessoa.setCidade("Betim");
+		pessoa.setUf(Uf.MINAS_GERAIS);
+		pessoa.setNumero(170);
+		pessoa.setCep(null);
+		
+		ResponseEntity<Response<Pessoa>> responseEntity = pessoaService.create(pessoa);
+		Response<Pessoa> response = responseEntity.getBody();
+		
+		String mensagemErro = null;
+		for (String mensagem : response.getErros()) {
+			if (mensagem.equalsIgnoreCase(Mensagens.CEP_E_OBRIGATORIO)) {
+				assertEquals(Mensagens.CEP_E_OBRIGATORIO, mensagem);
+				break;
+			}
+		}
+	}
+	
+	@Test
+	public void pessoa_com_cep_com_mais_de_8_caracteres_inclusao() throws Exception {
+		Pessoa pessoa = Pessoa.class.newInstance();
+		pessoa.setNome("xpto");
+		pessoa.setCpf("32056383012");
+		LocalDate data_nascimento = LocalDate.parse("1955-07-27", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		pessoa.setData_nascimento(data_nascimento);
+		pessoa.setEmail("cauaotavioteixeira__cauaotavioteixeira@trevorh.com.br");
+		pessoa.setNacionalidade("qualquer uma");
+		pessoa.setNaturalidade("qualquer uma");
+		pessoa.setLogradouro("Avenida Juiz Marco Túlio Isaac");
+		pessoa.setBairro("Laranjeiras");
+		pessoa.setCidade("Betim");
+		pessoa.setCep("3267635888888888");
+		pessoa.setUf(Uf.MINAS_GERAIS);
+		pessoa.setNumero(170);
+		
+		ResponseEntity<Response<Pessoa>> responseEntity = pessoaService.create(pessoa);
+		Response<Pessoa> response = responseEntity.getBody();
+		
+		assertEquals(Mensagens.CEP_NAO_PODE_TER_MAIS_DE_8_CARACTERES, response.getErros().get(0));
+	}
+	
+	@Test
+	public void pessoa_sem_uf_preenchido_inclusao() throws Exception {
+		Pessoa pessoa = Pessoa.class.newInstance();
+		pessoa.setNome("xpto");
+		pessoa.setCpf("32056383012");
+		LocalDate data_nascimento = LocalDate.parse("1955-07-27", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		pessoa.setData_nascimento(data_nascimento);
+		pessoa.setEmail("cauaotavioteixeira__cauaotavioteixeira@trevorh.com.br");
+		pessoa.setNacionalidade("qualquer uma");
+		pessoa.setNaturalidade("qualquer uma");
+		pessoa.setLogradouro("Avenida Juiz Marco Túlio Isaac");
+		pessoa.setBairro("Laranjeiras");
+		pessoa.setCidade("Betim");
+		pessoa.setCep("32676358");
+		pessoa.setUf(null);
+		pessoa.setNumero(170);
+		
+		ResponseEntity<Response<Pessoa>> responseEntity = pessoaService.create(pessoa);
+		Response<Pessoa> response = responseEntity.getBody();
+		
+		assertEquals(Mensagens.UF_E_OBRIGATORIO, response.getErros().get(0));
+	}
+	
+	@Test
+	public void pessoa_sem_numero_preenchido_inclusao() throws Exception {
+		Pessoa pessoa = Pessoa.class.newInstance();
+		pessoa.setNome("xpto");
+		pessoa.setCpf("32056383012");
+		LocalDate data_nascimento = LocalDate.parse("1955-07-27", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		pessoa.setData_nascimento(data_nascimento);
+		pessoa.setEmail("cauaotavioteixeira__cauaotavioteixeira@trevorh.com.br");
+		pessoa.setNacionalidade("qualquer uma");
+		pessoa.setNaturalidade("qualquer uma");
+		pessoa.setLogradouro("Avenida Juiz Marco Túlio Isaac");
+		pessoa.setBairro("Laranjeiras");
+		pessoa.setCidade("Betim");
+		pessoa.setCep("32676358");
+		pessoa.setUf(Uf.MINAS_GERAIS);
+		pessoa.setNumero(null);
+		
+		ResponseEntity<Response<Pessoa>> responseEntity = pessoaService.create(pessoa);
+		Response<Pessoa> response = responseEntity.getBody();
+		
+		assertEquals(Mensagens.O_NUMERO_E_OBRIGATORIO, response.getErros().get(0));
+	}
+	
+	
 	@Test
 	public void alterar_pessoa_com_sucesso() throws Exception {
 
 		Pessoa pessoa = pessoaService.findByCpf("76051106006");
 		pessoa.setEmail("jose@gmail.com");
-		pessoa.getEndereco().setData_atualizacao(new Date());
 
 		ResponseEntity<Response<Pessoa>> responseEntity = pessoaService.update(pessoa);
 		Response<Pessoa> response = responseEntity.getBody();

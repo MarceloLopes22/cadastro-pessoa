@@ -18,6 +18,7 @@ export class HttpInterceptorService implements HttpInterceptor {
             });
             return next.handle(authReq);
         } else {
+            localStorage.removeItem(this.authService.USUARIO_SESAO_NOME_ATRIBUTO);
             return next.handle(req);
         }
     }

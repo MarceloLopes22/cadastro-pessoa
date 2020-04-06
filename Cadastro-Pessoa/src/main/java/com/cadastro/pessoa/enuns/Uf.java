@@ -1,5 +1,10 @@
 package com.cadastro.pessoa.enuns;
 
+import java.util.Arrays;
+import java.util.Optional;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 public enum Uf {
 
 	AMAZONAS("AM"), ALAGOAS("AL"), ACRE("AC"),
@@ -27,5 +32,13 @@ public enum Uf {
 
 	public void setSigla(String sigla) {
 		this.sigla = sigla;
+	}
+	
+	@JsonCreator
+    public static Uf setValue(String key) {
+    Optional<Uf> uf = Arrays.stream(Uf.values())
+            .filter(valor -> valor.toString().equals(key.toUpperCase()))
+            .findAny();
+    return uf.orElse(null);
 	}
 }

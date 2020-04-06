@@ -26,13 +26,12 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.authService.autenticacao(this.usuario, this.senha).subscribe((result)=> {
-      this.loginInvalido = false;
-      this.loginSucesso = true;
-      this.mensagemSucesso = 'Login efetuado com sucesso.';
-      setTimeout(()=>{
-        this.router.navigate(['/home']);
-      }, 2000);
-      
+        this.loginInvalido = false;
+        this.loginSucesso = true;
+        this.mensagemSucesso = 'Login efetuado com sucesso.';
+        setTimeout(()=>{
+          this.router.navigate(['/home']);
+        }, 2000);
     }, () => {
       this.loginInvalido = true;
       this.loginSucesso = false;

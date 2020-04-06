@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,8 +11,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,6 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.cadastro.pessoa.constantes.Mensagens;
 import com.cadastro.pessoa.enuns.Sexo;
+import com.cadastro.pessoa.enuns.Uf;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -44,7 +42,6 @@ public class Pessoa implements Serializable {
 	private String nome;
 	
 	@Enumerated(EnumType.ORDINAL)
-	@Column(nullable = true)
 	private Sexo sexo;
 	
 	@Email(regexp = "^[A-Za-z0-9+_.-]+@(.+)$", message = Mensagens.INFORME_UM_E_MAIL_VALIDO)
@@ -70,6 +67,29 @@ public class Pessoa implements Serializable {
 	@Size(max = 11, message = Mensagens.O_CPF_NAO_PODE_TER_MAIS_DE_11_NUMEROS)
 	private String cpf;
 	
+	@NotBlank(message = Mensagens.O_LOGRADOURO_E_OBRIGATORIO)
+	@Size(message = Mensagens.LOGRADOURO_NAO_PODE_TER_MAIS_DE_100_CARACTERES, max = 100)
+	private String logradouro;
+	
+	@NotBlank(message = Mensagens.O_BAIRRO_E_OBRIGATORIO)
+	@Size(message = Mensagens.BAIRRO_NAO_PODE_TER_MAIS_DE_100_CARACTERES, max = 100)
+	private String bairro;
+	
+	@NotBlank(message = Mensagens.CIDADE_E_OBRIGATORIA)
+	@Size(message = Mensagens.CIDADE_NAO_PODE_TER_MAIS_DE_100_CARACTERES, max = 100)
+	private String cidade;
+	
+	@NotBlank(message = Mensagens.CEP_E_OBRIGATORIO)
+	@Size(message = Mensagens.CEP_NAO_PODE_TER_MAIS_DE_8_CARACTERES, max = 8)
+	private String cep;
+	
+	@NotNull(message = Mensagens.UF_E_OBRIGATORIO)
+	@Enumerated(EnumType.ORDINAL)
+	private Uf uf;
+	
+	@NotNull(message = Mensagens.O_NUMERO_E_OBRIGATORIO)
+	private Integer numero;
+	
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data_cadastro;
@@ -78,23 +98,22 @@ public class Pessoa implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data_atualizacao;
 	
-	@NotNull(message = Mensagens.O_ENDERECO_E_OBRIGATORTIO)
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name = "id_endereco")
-	private Endereco endereco;
-	
 	public Pessoa() {
 	}
 	
-	
-	public Pessoa(@NotBlank(message = Mensagens.NOME_E_OBRIGATORIO) @Size(message = Mensagens.NOME_NAO_PODE_TER_MAIS_DE_200_LETRAS, max = 200) String nome,
+	public Pessoa(
+			@NotBlank(message = "Nome é obrigatorio.") @Size(message = "Nome não pode ter mais de 200 letras.", max = 200) String nome,
 			Sexo sexo,
-			@Email(regexp = "^[A-Za-z0-9+_.-]+@(.+)$", message = Mensagens.INFORME_UM_E_MAIL_VALIDO) @Size(max = 200, message = Mensagens.O_E_MAIL_NAO_PODE_TER_MAIS_DE_200_LETRAS) String email,
-			@NotNull(message = Mensagens.A_DATA_DE_NASCIMENTO_DEVE_SER_PREENCHIDA) LocalDate data_nascimento,
-			@Size(max = 200, message = Mensagens.NATURALIDADE_NAO_PODE_TER_MAIS_DE_200_CARACTERES) String naturalidade,
-			@Size(max = 200, message = Mensagens.NACIONALIDADE_NAO_PODE_TER_MAIS_DE_200_CARACTERES) String nacionalidade,
-			@NotBlank(message = Mensagens.O_CPF_DEVE_SER_PREENCHIDO) @CPF(message = Mensagens.INFORME_UM_CPF_VALIDO) @Size(max = 11, message = Mensagens.O_CPF_NAO_PODE_TER_MAIS_DE_11_NUMEROS) String cpf,
-			@NotNull(message = Mensagens.O_ENDERECO_E_OBRIGATORTIO) Endereco endereco) {
+			@Email(regexp = "^[A-Za-z0-9+_.-]+@(.+)$", message = "Informe um E-mail valido.") @Size(max = 200, message = "O E-mail não pode ter mais de 200 letras.") String email,
+			@NotNull(message = "A data de nascimento deve ser preenchida.") LocalDate data_nascimento,
+			@Size(max = 200, message = "Naturalidade não pode ter mais de 200 caracteres.") String naturalidade,
+			@Size(max = 200, message = "Nacionalidade não pode ter mais de 200 caracteres.") String nacionalidade,
+			@NotBlank(message = "O CPF deve ser preenchido") @CPF(message = "Informe um CPF valido.") @Size(max = 11, message = "O CPF não pode ter mais de 11 numeros.") String cpf,
+			@NotBlank(message = "O logradouro é obrigatório.") @Size(message = "logradouro não pode ter mais de 100 caracteres.", max = 100) String logradouro,
+			@NotBlank(message = "O bairro é obrigatório.") @Size(message = "bairro não pode ter mais de 100 caracteres.", max = 100) String bairro,
+			@NotBlank(message = "Cidade é obrigatória.") @Size(message = "cidade não pode ter mais de 100 caracteres.", max = 100) String cidade,
+			@NotBlank(message = "Cidade é obrigatória.") @Size(message = "cep não pode ter mais de 8 caracteres.", max = 8) String cep,
+			@NotNull(message = "UF é obrigatório.") Uf uf, @NotNull(message = "O numero é obrigatório.") Integer numero) {
 		setNome(nome);
 		setSexo(sexo);
 		setEmail(email);
@@ -102,7 +121,12 @@ public class Pessoa implements Serializable {
 		setNaturalidade(naturalidade);
 		setNacionalidade(nacionalidade);
 		setCpf(cpf);
-		setEndereco(endereco);
+		setLogradouro(logradouro);
+		setBairro(bairro);
+		setCidade(cidade);
+		setCep(cep);
+		setUf(uf);
+		setNumero(numero);
 	}
 
 	public Long getId() {
@@ -169,12 +193,52 @@ public class Pessoa implements Serializable {
 		this.cpf = cpf;
 	}
 	
-	public Endereco getEndereco() {
-		return endereco;
+	public String getLogradouro() {
+		return logradouro;
 	}
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public Uf getUf() {
+		return uf;
+	}
+
+	public void setUf(Uf uf) {
+		this.uf = uf;
+	}
+
+	public Integer getNumero() {
+		return numero;
+	}
+
+	public void setNumero(Integer numero) {
+		this.numero = numero;
 	}
 
 	public Date getData_cadastro() {

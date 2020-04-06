@@ -7,10 +7,9 @@ import { MenuComponent } from '../menu/menu.component';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private menuComponente: MenuComponent) { }
+  constructor() { }
 
   ngOnInit() {
-    this.menuComponente.ngOnInit();
   }
 
 }

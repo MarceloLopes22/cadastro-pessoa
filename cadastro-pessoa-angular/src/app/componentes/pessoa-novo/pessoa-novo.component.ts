@@ -1,3 +1,4 @@
+import { Uf } from './../../modelo/enums/uf';
 import { Sexo } from './../../modelo/enums/sexo';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,10 +15,11 @@ export class PessoaNovoComponent implements OnInit {
 
   @ViewChild("form", {static: true}) form: NgForm;
 
-  pessoa = new Pessoa(null,"",null,"",null,"","","",null,null);
+  pessoa = new Pessoa(null,"",Sexo.SELECIONE,"",null,"","","","","", "","",null,null,null,null);
   menssage: {type: string, text: string};
   classCss: {}
   sexos = new Array<string>();
+  ufs = new Array<string>();
   isEdicao:boolean = false;
 
   ngAfterViewInit() {
@@ -36,6 +38,7 @@ export class PessoaNovoComponent implements OnInit {
       this.isEdicao = true;
     }
     this.sexos = Object.keys(Sexo);
+    this.ufs = Object.keys(Uf);
   }
 
   salvar(){

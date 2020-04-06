@@ -29,7 +29,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.result.StatusResultMatchers;
 
-import com.cadastro.pessoa.basica.Endereco;
 import com.cadastro.pessoa.basica.Pessoa;
 import com.cadastro.pessoa.constantes.Mensagens;
 import com.cadastro.pessoa.controller.response.Response;
@@ -55,19 +54,12 @@ public class PessoaRestControllerTest {
     public void setUp() {
     	pessoaRepository.deleteAll();
     	
-    	Endereco endereco = getEndereco();
-    	endereco.setData_cadastro(new Date());
-    	
     	Pessoa p = new Pessoa("Dona Herminia", Sexo.FEMININO, "hermina@gmail.com", LocalDate.of(2020, 04, 04), "Teste",
-				"Teste", "82658989083", endereco);
+				"Teste", "82658989083", "Avenida Juiz Marco Túlio Isaac", "Laranjeiras", "Betim", "32676358",
+				Uf.MINAS_GERAIS, 170);
     	p.setData_cadastro(new Date());
     	pessoaRepository.save(p);
     }
-    
-    private Endereco getEndereco() {
-		Endereco endereco = new Endereco("Avenida Juiz Marco Túlio Isaac", "Laranjeiras", "Betim", "32676358", Uf.MINAS_GERAIS, 170);
-		return endereco;
-	}
     
 	@Test
 	public void acesso_nao_autenticado() throws Exception {
@@ -116,7 +108,8 @@ public class PessoaRestControllerTest {
         final String baseUrl = "http://localhost:"+randomServerPort+"/api/pessoa/salvar";
         URI uri = new URI(baseUrl);
         Pessoa p = new Pessoa("Dona Herminia", Sexo.FEMININO, "hermina@gmail.com", LocalDate.of(2020, 04, 04), "Teste",
-				"Teste", "35517459005", getEndereco());
+				"Teste", "35517459005", "Avenida Juiz Marco Túlio Isaac", "Laranjeiras", "Betim", "32676358",
+				Uf.MINAS_GERAIS, 170);
         
         HttpHeaders headers = new HttpHeaders();
         headers.setBasicAuth("admin", "admin");  
@@ -133,7 +126,6 @@ public class PessoaRestControllerTest {
     	
     	Pessoa pessoa = pessoaRepository.findPessoaByCpf("82658989083");
     	pessoa.setNome("Maria José");
-    	pessoa.getEndereco().setData_atualizacao(new Date());
     	
         final String baseUrl = "http://localhost:"+randomServerPort+"/api/pessoa/atualizar";
         URI uri = new URI(baseUrl);

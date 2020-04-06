@@ -26,8 +26,8 @@
                         <span>{{pessoa.email}}</span>
                     </li>
                     <li class="list-group-item">
-                        <b>Data de Nascimento': </b>
-                        <span>{{pessoa.data_nascimento}}</span>
+                        <b>Data de Nascimento: </b>
+                        <span>{{pessoa.data_nascimento | date: 'dd/MM/yyyy'}}</span>
                     </li>
                     <li class="list-group-item">
                         <b>Naturalidade: </b>
@@ -36,6 +36,30 @@
                     <li class="list-group-item">
                         <b>Nacionalidade: </b>
                         <span>{{pessoa.nacionalidade}}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Logradouro: </b>
+                        <span>{{pessoa.logradouro}}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Bairro: </b>
+                        <span>{{pessoa.bairro}}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Cidade: </b>
+                        <span>{{pessoa.cidade}}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <b>CEP: </b>
+                        <span>{{pessoa.cep | mask: '00000-000'}}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <b>UF: </b>
+                        <span>{{pessoa.uf}}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Numero: </b>
+                        <span>{{pessoa.numero}}</span>
                     </li>
                 </ul>
             </div>

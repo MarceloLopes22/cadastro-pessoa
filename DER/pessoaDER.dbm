@@ -12,7 +12,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="pessoa">
 	<schema name="public"/>
-	<position x="178" y="13"/>
+	<position x="394" y="101"/>
 	<column name="id">
 		<type name="bigint"/>
 	</column>
@@ -37,6 +37,24 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="cpf">
 		<type name="varchar" length="11"/>
 	</column>
+	<column name="logradouro" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="bairro" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="cidade" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="cep" not-null="true">
+		<type name="varchar" length="8"/>
+	</column>
+	<column name="uf" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="numero" not-null="true">
+		<type name="integer"/>
+	</column>
 	<column name="data_cadastro">
 		<type name="timestamp" with-timezone="true"/>
 	</column>
@@ -54,50 +72,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 cache="1" cycle="false">
 	<schema name="public"/>
 </sequence>
-
-<table name="endereco">
-	<schema name="public"/>
-	<position x="240" y="354"/>
-	<column name="id">
-		<type name="bigint"/>
-	</column>
-	<column name="lomgradouro">
-		<type name="varchar" length="100"/>
-	</column>
-	<column name="bairro">
-		<type name="varchar" length="100"/>
-	</column>
-	<column name="cidade">
-		<type name="varchar" length="100"/>
-	</column>
-	<column name="cep">
-		<type name="varchar" length="8"/>
-	</column>
-	<column name="uf">
-		<type name="integer" length="2"/>
-	</column>
-	<column name="numero">
-		<type name="integer"/>
-	</column>
-	<column name="data_cadastro">
-		<type name="timestamp" with-timezone="true"/>
-	</column>
-	<column name="data_atualizacao">
-		<type name="timestamp" with-timezone="true"/>
-	</column>
-	<constraint name="endereco_pk" type="pk-constr" factor="10" table="public.endereco">
-		<columns names="id" ref-type="src-columns"/>
-	</constraint>
-</table>
-
-<relationship name="pessoa_has_one_endereco" type="rel11"
-	 src-col-pattern="{sc}_{st}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 col-indexes="10" constr-indexes="1,2"
-	 src-table="public.endereco"
-	 dst-table="public.pessoa"
-	 src-required="true" dst-required="false"/>
 
 <sequence name="endereco_seq"
 	 start="1" increment="1"

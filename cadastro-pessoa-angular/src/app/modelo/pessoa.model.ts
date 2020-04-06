@@ -1,4 +1,5 @@
 import { Sexo } from './enums/sexo';
+import { Uf } from './enums/uf';
 
 export class Pessoa {
 
@@ -10,6 +11,12 @@ export class Pessoa {
                 public naturalidade: string,
                 public nacionalidade: string,
                 public cpf: string,
+                public logradouro:string,
+                public bairro: string,
+                public cidade: string,
+                public cep: string,
+                public uf: Uf,
+                public numero: number,
                 public data_cadastro: Date,
-                public data_atualizacao: Date,){}
+                public data_atualizacao: Date){}
 }

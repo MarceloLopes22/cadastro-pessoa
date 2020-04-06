@@ -14,7 +14,7 @@ import { CPFPipe } from './componentes/pipes/cpf.pipe';
 import { PessoaDetalharComponent } from './componentes/pessoa-detalhar/pessoa-detalhar.component';
 import { PessoaNovoComponent } from './componentes/pessoa-novo/pessoa-novo.component';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { LoginComponent } from './componentes/login/login.component'
+import { LoginComponent } from './componentes/login/login.component';
 import { HttpInterceptorService } from './componentes/login/httpInterceptor.service';
  
 export const options: IConfig | (() => IConfig) = null;
@@ -38,8 +38,7 @@ export const options: IConfig | (() => IConfig) = null;
     FormsModule,
     routes,
     HttpClientModule,
-    NgxMaskModule.forRoot(options),
-    NgxMaskModule
+    NgxMaskModule.forRoot(options)
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

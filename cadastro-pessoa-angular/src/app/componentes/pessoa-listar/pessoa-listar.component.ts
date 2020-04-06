@@ -6,8 +6,7 @@ import { PessoaService } from 'src/app/servicos/pessoa.service';
 
 @Component({
   selector: 'app-pessoa-listar',
-  templateUrl: './pessoa-listar.component.html',
-  styleUrls: ['./pessoa-listar.component.css']
+  templateUrl: './pessoa-listar.component.html'
 })
 export class PessoaListarComponent implements OnInit {
 
@@ -58,7 +57,7 @@ export class PessoaListarComponent implements OnInit {
         }, err => {
           this.showMessage({
             type: 'error',
-            text: err['error']['erros'][0]
+            text: err["error"]["erros"][0] != null ? err["error"]["erros"] : err["error"]
           });
         });
       }
