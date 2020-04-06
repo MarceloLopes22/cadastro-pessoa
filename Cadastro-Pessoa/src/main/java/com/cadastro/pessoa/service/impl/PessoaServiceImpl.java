@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.cadastro.pessoa.basica.Endereco;
 import com.cadastro.pessoa.basica.Pessoa;
 import com.cadastro.pessoa.constantes.Mensagens;
 import com.cadastro.pessoa.controller.response.Response;
@@ -40,6 +41,8 @@ public class PessoaServiceImpl implements PessoaService {
 
 		if (response.getErros().isEmpty()) {
 			pessoa.setData_cadastro(new Date());
+			Endereco endereco = pessoa.getEndereco();
+			endereco.setData_cadastro(new Date());
 			pessoa = dao.save(pessoa);
 			mensagemSucesso(pessoa, response, Mensagens.PESSOA_CADASTRADA_COM_SUCESSO);
 		}
@@ -58,6 +61,8 @@ public class PessoaServiceImpl implements PessoaService {
 
 		if (response.getErros().isEmpty()) {
 			pessoa.setData_atualizacao(new Date());
+			Endereco endereco = pessoa.getEndereco();
+			endereco.setData_atualizacao(new Date());
 			pessoa = dao.save(pessoa);
 			mensagemSucesso(pessoa, response, Mensagens.PESSOA_ALTERADA_COM_SUCESSO);
 		}
@@ -138,6 +143,10 @@ public class PessoaServiceImpl implements PessoaService {
 
 		if (violations != null && !violations.isEmpty()) {
 			violations.forEach(e -> response.getErros().add(e.getMessage()));
+		}
+		Endereco endereco = pessoa.getEndereco();
+		if (endereco != null && endereco.getCep().length() != 8) {
+			response.getErros().add(Mensagens.CEP_INVALIDO);
 		}
 
 		if (Acao.INSERIR.equals(acao)) {

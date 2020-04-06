@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,6 +12,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,6 +25,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.cadastro.pessoa.constantes.Mensagens;
 import com.cadastro.pessoa.enuns.Sexo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -35,37 +39,35 @@ public class Pessoa implements Serializable {
 	@SequenceGenerator(name = "pessoa_seq", sequenceName = "pessoa_seq", allocationSize = 1)
 	private Long id;
 	
-	@NotBlank(message = "Nome é obrigatorio.")
-	@Size(message = "Nome não pode ter mais de 200 letras.", max = 200)
+	@NotBlank(message = Mensagens.NOME_E_OBRIGATORIO)
+	@Size(message = Mensagens.NOME_NAO_PODE_TER_MAIS_DE_200_LETRAS, max = 200)
 	private String nome;
 	
 	@Enumerated(EnumType.ORDINAL)
 	@Column(nullable = true)
 	private Sexo sexo;
 	
-	@Email(regexp = "^[A-Za-z0-9+_.-]+@(.+)$", message = "Informe um E-mail valido.")
-	@Size(max = 200, message = "O E-mail não pode ter mais de 200 letras.")
-	@Column(nullable = true)
+	@Email(regexp = "^[A-Za-z0-9+_.-]+@(.+)$", message = Mensagens.INFORME_UM_E_MAIL_VALIDO)
+	@Size(max = 200, message = Mensagens.O_E_MAIL_NAO_PODE_TER_MAIS_DE_200_LETRAS)
 	private String email;
 	
-	@NotNull(message = "A data de nascimento deve ser preenchida.")
+	@NotNull(message = Mensagens.A_DATA_DE_NASCIMENTO_DEVE_SER_PREENCHIDA)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(columnDefinition = "DATE")
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	private LocalDate data_nascimento;
 	
-	@Size(max = 200, message = "Naturalidade não pode ter mais de 200 caracteres.")
+	@Size(max = 200, message = Mensagens.NATURALIDADE_NAO_PODE_TER_MAIS_DE_200_CARACTERES)
 	@Column(nullable = true)
 	private String naturalidade;
 	
-	@Size(max = 200, message = "Nacionalidade não pode ter mais de 200 caracteres.")
+	@Size(max = 200, message = Mensagens.NACIONALIDADE_NAO_PODE_TER_MAIS_DE_200_CARACTERES)
 	@Column(nullable = true)
 	private String nacionalidade;
 	
-	@NotBlank(message = "O CPF deve ser preenchido")
-	@CPF(message = "Informe um CPF valido.")
-	@Size(max = 11, message = "O CPF não pode ter mais de 11 numeros.")
-	@Column(nullable = true)
+	@NotBlank(message = Mensagens.O_CPF_DEVE_SER_PREENCHIDO)
+	@CPF(message = Mensagens.INFORME_UM_CPF_VALIDO)
+	@Size(max = 11, message = Mensagens.O_CPF_NAO_PODE_TER_MAIS_DE_11_NUMEROS)
 	private String cpf;
 	
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
@@ -76,17 +78,23 @@ public class Pessoa implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data_atualizacao;
 	
+	@NotNull(message = Mensagens.O_ENDERECO_E_OBRIGATORTIO)
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "id_endereco")
+	private Endereco endereco;
+	
 	public Pessoa() {
 	}
-
-	public Pessoa(
-			@NotBlank(message = "Nome é obrigatorio.") @Size(message = "Nome não pode ter mais de 200 letras.", max = 200) String nome,
+	
+	
+	public Pessoa(@NotBlank(message = Mensagens.NOME_E_OBRIGATORIO) @Size(message = Mensagens.NOME_NAO_PODE_TER_MAIS_DE_200_LETRAS, max = 200) String nome,
 			Sexo sexo,
-			@Email(regexp = "^[A-Za-z0-9+_.-]+@(.+)$", message = "Informe um E-mail valido.") @Size(max = 200, message = "O E-mail não pode ter mais de 200 letras.") String email,
-			@NotNull(message = "A data de nascimento deve ser preenchida.") LocalDate data_nascimento,
-			@Size(max = 200, message = "Naturalidade não pode ter mais de 200 caracteres.") String naturalidade,
-			@Size(max = 200, message = "Nacionalidade não pode ter mais de 200 caracteres.") String nacionalidade,
-			@NotBlank(message = "O CPF deve ser preenchido") @CPF(message = "Informe um CPF valido.") @Size(max = 11, message = "O CPF não pode ter mais de 11 numeros.") String cpf) {
+			@Email(regexp = "^[A-Za-z0-9+_.-]+@(.+)$", message = Mensagens.INFORME_UM_E_MAIL_VALIDO) @Size(max = 200, message = Mensagens.O_E_MAIL_NAO_PODE_TER_MAIS_DE_200_LETRAS) String email,
+			@NotNull(message = Mensagens.A_DATA_DE_NASCIMENTO_DEVE_SER_PREENCHIDA) LocalDate data_nascimento,
+			@Size(max = 200, message = Mensagens.NATURALIDADE_NAO_PODE_TER_MAIS_DE_200_CARACTERES) String naturalidade,
+			@Size(max = 200, message = Mensagens.NACIONALIDADE_NAO_PODE_TER_MAIS_DE_200_CARACTERES) String nacionalidade,
+			@NotBlank(message = Mensagens.O_CPF_DEVE_SER_PREENCHIDO) @CPF(message = Mensagens.INFORME_UM_CPF_VALIDO) @Size(max = 11, message = Mensagens.O_CPF_NAO_PODE_TER_MAIS_DE_11_NUMEROS) String cpf,
+			@NotNull(message = Mensagens.O_ENDERECO_E_OBRIGATORTIO) Endereco endereco) {
 		setNome(nome);
 		setSexo(sexo);
 		setEmail(email);
@@ -94,6 +102,7 @@ public class Pessoa implements Serializable {
 		setNaturalidade(naturalidade);
 		setNacionalidade(nacionalidade);
 		setCpf(cpf);
+		setEndereco(endereco);
 	}
 
 	public Long getId() {
@@ -158,6 +167,14 @@ public class Pessoa implements Serializable {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	public Date getData_cadastro() {

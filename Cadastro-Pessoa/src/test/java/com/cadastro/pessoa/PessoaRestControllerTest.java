@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,11 +29,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.result.StatusResultMatchers;
 
+import com.cadastro.pessoa.basica.Endereco;
 import com.cadastro.pessoa.basica.Pessoa;
 import com.cadastro.pessoa.constantes.Mensagens;
 import com.cadastro.pessoa.controller.response.Response;
 import com.cadastro.pessoa.dao.PessoaRepository;
 import com.cadastro.pessoa.enuns.Sexo;
+import com.cadastro.pessoa.enuns.Uf;
 
 @SuppressWarnings({ "rawtypes", "unused" })
 @RunWith(SpringRunner.class)
@@ -47,19 +50,27 @@ public class PessoaRestControllerTest {
     
     @Autowired
     private PessoaRepository pessoaRepository;
-    
+
     @Before
     public void setUp() {
     	pessoaRepository.deleteAll();
     	
-    	Pessoa p = new Pessoa("Dona Herminia", Sexo.FEMININO, "hermina@gmail.com", LocalDate.of(2020, 04, 04), "Teste",
-				"Teste", "82658989083");
+    	Endereco endereco = getEndereco();
+    	endereco.setData_cadastro(new Date());
     	
+    	Pessoa p = new Pessoa("Dona Herminia", Sexo.FEMININO, "hermina@gmail.com", LocalDate.of(2020, 04, 04), "Teste",
+				"Teste", "82658989083", endereco);
+    	p.setData_cadastro(new Date());
     	pessoaRepository.save(p);
     }
     
+    private Endereco getEndereco() {
+		Endereco endereco = new Endereco("Avenida Juiz Marco Túlio Isaac", "Laranjeiras", "Betim", "32676358", Uf.MINAS_GERAIS, 170);
+		return endereco;
+	}
+    
 	@Test
-	public void acesso_Nao_Autenticado() throws Exception {
+	public void acesso_nao_autenticado() throws Exception {
 		final String baseUrl = "http://localhost:" + randomServerPort + "/api/v1/basicauth";
 		URI uri = new URI(baseUrl);
 		ResponseEntity<StatusResultMatchers> responseEntity = this.restTemplate.getForEntity(uri,
@@ -69,7 +80,7 @@ public class PessoaRestControllerTest {
 	}
 
   	@Test
-  	public void login_Usuario_Autenticado() throws Exception {
+  	public void login_usuario_autenticado() throws Exception {
   		
   		final String baseUrl = "http://localhost:" + randomServerPort + "/api/v1/basicauth";
 		URI uri = new URI(baseUrl);
@@ -85,7 +96,7 @@ public class PessoaRestControllerTest {
   	}
   	
   	@Test
-  	public void login_Usuario_Invalido() throws Exception {
+  	public void login_usuario_invalido() throws Exception {
   		
   		final String baseUrl = "http://localhost:" + randomServerPort + "/api/v1/basicauth";
   		URI uri = new URI(baseUrl);
@@ -105,7 +116,7 @@ public class PessoaRestControllerTest {
         final String baseUrl = "http://localhost:"+randomServerPort+"/api/pessoa/salvar";
         URI uri = new URI(baseUrl);
         Pessoa p = new Pessoa("Dona Herminia", Sexo.FEMININO, "hermina@gmail.com", LocalDate.of(2020, 04, 04), "Teste",
-				"Teste", "35517459005");
+				"Teste", "35517459005", getEndereco());
         
         HttpHeaders headers = new HttpHeaders();
         headers.setBasicAuth("admin", "admin");  
@@ -122,6 +133,7 @@ public class PessoaRestControllerTest {
     	
     	Pessoa pessoa = pessoaRepository.findPessoaByCpf("82658989083");
     	pessoa.setNome("Maria José");
+    	pessoa.getEndereco().setData_atualizacao(new Date());
     	
         final String baseUrl = "http://localhost:"+randomServerPort+"/api/pessoa/atualizar";
         URI uri = new URI(baseUrl);
