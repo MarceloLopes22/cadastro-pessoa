@@ -1,24 +1,13 @@
--- Database generated with pgModeler (PostgreSQL Database Modeler).
--- pgModeler  version: 0.7.0
--- PostgreSQL version: 9.3
--- Project Site: pgmodeler.com.br
--- Model Author: ---
+DROP DATABASE IF EXISTS pessoaDb;
+
+DROP TABLE IF EXISTS public.pessoa;
+
+DROP SEQUENCE IF EXISTS public.pessoa_seq;
+
+create database pessoaDb;
 
 SET check_function_bodies = false;
--- ddl-end --
 
-
--- Database creation must be done outside an multicommand file.
--- These commands were put in this file only for convenience.
--- -- object: "cadastro-pessoa-stefanini" | type: DATABASE --
--- -- DROP DATABASE "cadastro-pessoa-stefanini";
--- CREATE DATABASE "cadastro-pessoa-stefanini"
--- ;
--- -- ddl-end --
--- 
-
--- object: public.pessoa | type: TABLE --
--- DROP TABLE public.pessoa;
 CREATE TABLE public.pessoa(
 	id bigint,
 	nome varchar(200) NOT NULL,
@@ -39,9 +28,7 @@ CREATE TABLE public.pessoa(
 	CONSTRAINT pessoa_pk PRIMARY KEY (id)
 
 );
--- ddl-end --
--- object: public.pessoa_seq | type: SEQUENCE --
--- DROP SEQUENCE public.pessoa_seq;
+
 CREATE SEQUENCE public.pessoa_seq
 	INCREMENT BY 1
 	MINVALUE 0
@@ -50,7 +37,6 @@ CREATE SEQUENCE public.pessoa_seq
 	CACHE 1
 	NO CYCLE
 	OWNED BY NONE;
--- ddl-end --
 
 
 
