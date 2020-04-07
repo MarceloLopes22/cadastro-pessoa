@@ -1,0 +1,129 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Heroku-Stefanini-API-REST",
+		"_postman_id": "60e7d9ad-8cef-cfff-839c-39508cd033f9",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://api-rest-cadastro-pessoa.herokuapp.com/api/v1/basicauth",
+			"request": {
+				"url": "https://api-rest-cadastro-pessoa.herokuapp.com/api/v1/basicauth",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4=",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://api-rest-cadastro-pessoa.herokuapp.com/api/pessoa/salvar",
+			"request": {
+				"url": "https://api-rest-cadastro-pessoa.herokuapp.com/api/pessoa/salvar",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4=",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\":\"Cauã Otávio Teixeira\",\n\t\"cpf\":\"85639888598\",\n\t\"data_nascimento\":\"1955-07-27\",\n\t\"email\":\"cauaotavioteixeira@trevorh.com.br\",\n\t\"sexo\": \"MASCULINO\",\n\t\"nacionalidade\":\"Brasileiro\",\n\t\"naturalidade\":\"Curitibano\",\n\t\"logradouro\":\"Avenida Minas Gerais\",\n\t\"bairro\":\"Estados\",\n\t\"cidade\":\"Boa Vista\",\n\t\"cep\":\"69305660\",\n\t\"uf\":\"RORAIMA\",\n\t\"numero\":676\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://api-rest-cadastro-pessoa.herokuapp.com/api/pessoa/listar/0/10",
+			"request": {
+				"url": "https://api-rest-cadastro-pessoa.herokuapp.com/api/pessoa/listar/0/10",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4=",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://api-rest-cadastro-pessoa.herokuapp.com/api/pessoa/pesquisar/1",
+			"request": {
+				"url": "https://api-rest-cadastro-pessoa.herokuapp.com/api/pessoa/pesquisar/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4=",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://api-rest-cadastro-pessoa.herokuapp.com/api/pessoa/atualizar",
+			"request": {
+				"url": "https://api-rest-cadastro-pessoa.herokuapp.com/api/pessoa/atualizar",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4=",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 2,\n        \"nome\": \"Elza Marina Lorena Mendes\",\n        \"sexo\": \"FEMININO\",\n        \"email\": \"elzamarinalorenamendes_@aprimor.com\",\n        \"data_nascimento\": \"1955-07-27\",\n        \"naturalidade\": \"Curitibano\",\n        \"nacionalidade\": \"Brasileiro\",\n        \"cpf\": \"91815974281\",\n        \"logradouro\": \"Avenida Minas Gerais\",\n        \"bairro\": \"Estados\",\n        \"cidade\": \"Boa Vista\",\n        \"cep\": \"69305660\",\n        \"uf\": \"RORAIMA\",\n        \"numero\": 676,\n        \"data_cadastro\": \"2020-04-07T07:34:21.621+0000\",\n        \"data_atualizacao\": null\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://api-rest-cadastro-pessoa.herokuapp.com/api/pessoa/deletar/3",
+			"request": {
+				"url": "https://api-rest-cadastro-pessoa.herokuapp.com/api/pessoa/deletar/3",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4=",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

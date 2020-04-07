@@ -1,216 +1,54 @@
 {
+	"variables": [],
 	"info": {
-		"_postman_id": "bf641b99-f89f-422f-99d8-022605365d3f",
-		"name": "Cadastro Pessoa",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"name": "Pessoa-Cadastro",
+		"_postman_id": "38ce2724-8a01-3709-faaf-e498512316e5",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Autenticar",
+			"name": "localhost:8080/api/v1/basicauth",
 			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "admin",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "admin",
-							"type": "string"
-						}
-					]
-				},
+				"url": "localhost:8080/api/v1/basicauth",
 				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/api/v1/basicauth",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"basicauth"
-					]
-				},
-				"description": "Autenticação"
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4=",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Teste Autenticação"
 			},
 			"response": []
 		},
 		{
-			"name": "Salvar Pessoa",
+			"name": "localhost:8080/api/pessoa/salvar",
 			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "admin",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "admin",
-							"type": "string"
-						}
-					]
-				},
+				"url": "localhost:8080/api/pessoa/salvar",
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nome\":\"Cauã Otávio Teixeira\",\n\t\"cpf\":\"85639888598\",\n\t\"data_nascimento\":\"1955-07-27\",\n\t\"email\":\"cauaotavioteixeira__cauaotavioteixeira@trevorh.com.br\",\n\t\"sexo\": \"MASCULINO\",\n\t\"nacionalidade\":\"Brasileiro\",\n\t\"naturalidade\":\"Curitibano\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": "{\n\t\"nome\":\"Cauã Otávio Teixeira\",\n\t\"cpf\":\"09680312429\",\n\t\"data_nascimento\":\"1955-07-27\",\n\t\"email\":\"cauaotavioteixeira@trevorh.com.br\",\n\t\"sexo\": \"MASCULINO\",\n\t\"nacionalidade\":\"Brasileiro\",\n\t\"naturalidade\":\"Curitibano\",\n\t\"logradouro\":\"Avenida Minas Gerais\",\n\t\"bairro\":\"Estados\",\n\t\"cidade\":\"Boa Vista\",\n\t\"cep\":\"69305660\",\n\t\"uf\":\"RORAIMA\",\n\t\"numero\":676\n}"
 				},
-				"url": {
-					"raw": "http://localhost:8080/api/pessoa/salvar",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"pessoa",
-						"salvar"
-					]
-				},
-				"description": "Salvar"
+				"description": ""
 			},
 			"response": []
 		},
 		{
-			"name": "Atualizar Pessoa",
+			"name": "localhost:8080/api/pessoa/listar/?page=0&count=10",
 			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "admin",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "admin",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": " {\r\n        \"id\": 536,\r\n        \"nome\": \"Marcelo Lopes Edição\",\r\n        \"sexo\": \"MASCULINO\",\r\n        \"email\": \"cauaotavioteixeira__cauaotavioteixeira@trevorh.com.br\",\r\n        \"data_nascimento\": \"1955-07-27\",\r\n        \"naturalidade\": \"Curitibano\",\r\n        \"nacionalidade\": \"Brasileiro\",\r\n        \"cpf\": \"85639888598\",\r\n        \"data_cadastro\": \"2020-04-05T00:41:41.086+0000\",\r\n        \"data_atualizacao\": null\r\n    }",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "http://localhost:8080/api/pessoa/atualizar",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"pessoa",
-						"atualizar"
-					]
-				},
-				"description": "Atualizar Pessoa"
-			},
-			"response": []
-		},
-		{
-			"name": "Deletar Pessoa",
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "admin",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "admin",
-							"type": "string"
-						}
-					]
-				},
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/pessoa/deletar/536",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"pessoa",
-						"deletar",
-						"536"
-					]
-				},
-				"description": "Deletar Pessoa"
-			},
-			"response": []
-		},
-		{
-			"name": "Pesquisar Pessoa",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/pessoa/pesquisar/534",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"pessoa",
-						"pesquisar",
-						"534"
-					]
-				},
-				"description": "Pesquisar Pessoa"
-			},
-			"response": []
-		},
-		{
-			"name": "Listar Pessoas",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/pessoa/listar/0/10",
-					"protocol": "http",
+					"raw": "localhost:8080/api/pessoa/listar/?page=0&count=10",
 					"host": [
 						"localhost"
 					],
@@ -219,29 +57,95 @@
 						"api",
 						"pessoa",
 						"listar",
-						"0",
-						"10"
-					]
+						""
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "count",
+							"value": "10",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
 				},
-				"description": "Listar Pessoas"
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/pessoa/atualizar",
+			"request": {
+				"url": "localhost:8080/api/pessoa/atualizar",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n                \"id\": 1506,\n                \"nome\": \"Cauã Otávio Teixeiraaaaaaaaaaaaaaaaaaaaaa\",\n                \"sexo\": \"MASCULINO\",\n                \"email\": \"cauaotavioteixeira@trevorh.com.br\",\n                \"data_nascimento\": \"1955-07-27\",\n                \"naturalidade\": \"Curitibano\",\n                \"nacionalidade\": \"Brasileiro\",\n                \"cpf\": \"09680312429\",\n                \"logradouro\": \"Avenida Minas Gerais\",\n                \"bairro\": \"Estados\",\n                \"cidade\": \"Boa Vista\",\n                \"cep\": \"69305660\",\n                \"uf\": \"RORAIMA\",\n                \"numero\": 676,\n                \"data_cadastro\": \"2020-04-07T08:20:45.189+0000\",\n                \"data_atualizacao\": null\n            }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/pessoa/pesquisar/?id=1",
+			"request": {
+				"url": "http://localhost:8080/api/pessoa/pesquisar/1506",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4=",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":1}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/pessoa/deletar/?id=1",
+			"request": {
+				"url": "localhost:8080/api/pessoa/deletar/1506",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
 			},
 			"response": []
 		}
-	],
-	"auth": {
-		"type": "basic",
-		"basic": [
-			{
-				"key": "password",
-				"value": "admin",
-				"type": "string"
-			},
-			{
-				"key": "username",
-				"value": "admin",
-				"type": "string"
-			}
-		]
-	},
-	"protocolProfileBehavior": {}
+	]
 }

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +17,7 @@ import com.cadastro.pessoa.basica.Pessoa;
 import com.cadastro.pessoa.controller.response.Response;
 import com.cadastro.pessoa.service.PessoaService;
 
-@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:8080"})
+//@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:8080", "https://api-rest-cadastro-pessoa.herokuapp.com/"})
 @RestController
 @RequestMapping("/api/pessoa/")
 public class PessoaRestController {
