@@ -17,6 +17,7 @@ export class PessoaNovoComponent implements OnInit {
 
   pessoa = new Pessoa(null,"",Sexo.SELECIONE,"",null,"","","","","", "","",null,null,null,null);
   menssage: {type: string, text: string};
+  erros = [];
   classCss: {}
   sexos = new Array<string>();
   ufs = new Array<string>();
@@ -53,10 +54,14 @@ export class PessoaNovoComponent implements OnInit {
       }, 8000);
       
     }, err =>{
-      this.showMessage({
-        type: 'error',
-        text: err["error"]["erros"][0] != null ? err["error"]["erros"] : err["error"]
-      });
+      if(err["error"]["erros"][0] != null){
+        this.erros = err["error"]["erros"];
+      } else {
+        this.erros = err["error"];
+      }
+      setTimeout(()=>{
+        this.erros = [];
+      }, 2000);
     });    
   }
 

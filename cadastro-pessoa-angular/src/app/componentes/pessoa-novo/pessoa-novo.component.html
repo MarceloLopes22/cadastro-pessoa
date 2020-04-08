@@ -6,12 +6,12 @@
         <div class="container">
             <div class="row col-sm-10">
                 <form class="form-horizontal" #form="ngForm" (ngSubmit)="salvar()">
-                    <div [ngClass]="classCss" role="alert" *ngIf="menssage != null && menssage.erros > 0">
-                        <div *ngFor="let e of menssage.erros">
+                    <div class="alert alert-error" role="alert" *ngIf="erros != null && erros.length > 0">
+                        <div *ngFor="let e of erros">
                             <br/><strong>{{e}}</strong>
                         </div>
                     </div>
-                    <div [ngClass]="classCss" role="alert" *ngIf="menssage">
+                    <div [ngClass]="classCss" role="alert" *ngIf="menssage != null && menssage.text != ''">
                         <strong>{{menssage.text}}</strong>
                     </div>
                     <div class="box-body">

@@ -12,7 +12,7 @@ import { ResponseApi } from 'src/app/modelo/responseApi.model';
 export class PessoaDetalharComponent implements OnInit {
 
   pessoa = new Pessoa(null,"",null,"",null,"","","","","", "","",null,null,null,null);
-  menssage: {};
+  menssage: {type: string, text: string};
   classCss: {};
 
   constructor(private pessoaService: PessoaService,

@@ -3,13 +3,18 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
+    "postinstall": "ng build --aot --prod",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
+  "engines": {
+    "node": "12.13.0",
+    "npm": "6.12.0"
+  },
+   "private": true,
   "dependencies": {
     "@angular/animations": "~8.2.14",
     "@angular/common": "~8.2.14",
@@ -23,6 +28,7 @@
     "angular-input-masks": "^4.4.1",
     "angular2-text-mask": "^9.0.0",
     "brmasker-ionic-3": "^1.6.3",
+    "express": "^4.17.1",
     "js-brasil": "^2.1.0",
     "ng-brazil": "^2.0.10",
     "ngx-mask": "^8.2.0",
